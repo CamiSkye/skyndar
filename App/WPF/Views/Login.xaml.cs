@@ -11,17 +11,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using WPF.ViewModels;
 namespace WPF.Views
 {
     /// <summary>
-    /// Logique d'interaction pour Window1.xaml
+    /// Logique d'interaction pour Login.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Login : Window
     {
-        public Window1()
+        public Login()
         {
             InitializeComponent();
+            DataContext = new LoginVM();
         }
     }
 }
