@@ -35,7 +35,7 @@
                     
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="0" >
                         <Button Content="-"  Command="{Binding PreviousMonthCommand}" Width="10" Height="30"  VerticalAlignment="Top"/>
-                        <TextBlock Text="{Binding CurrentMonth}"  FontSize="14" FontFamily="Baskerville Old Face" Height="auto" Width=" auto" Margin="10"/>
+                        <TextBlock Text="{Binding CurrentMonth}"  FontSize="11" FontFamily="Baskerville Old Face" TextAlignment="Center"/>
                         <Button Content="+" Command="{Binding NextMonthCommand}" Width="10" Height="30"  VerticalAlignment="Top"/>
 
                     </StackPanel>
@@ -43,7 +43,7 @@
                          <ItemsControl ItemsSource="{Binding Days}"   >
                              <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                     <UniformGrid Columns="7" Rows="6"/>
+                                     <UniformGrid Columns="7"/>
                                 </ItemsPanelTemplate>
                              </ItemsControl.ItemsPanel>
 

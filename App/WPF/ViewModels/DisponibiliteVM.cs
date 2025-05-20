@@ -31,11 +31,13 @@ namespace WPF.ViewModels
         {
             currentMonth = currentMonth.AddMonths(-1);
             OnPropertyChanged(nameof(CurrentMonth));
+            LoadCalendar();
         }
         public void NextMonthAction()
         {
             currentMonth = currentMonth.AddMonths(1);
             OnPropertyChanged(nameof(CurrentMonth));
+            LoadCalendar();
         }
         public void SelectDayAction()
         {
