@@ -50,8 +50,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Content="{Binding DayNumber}" 
-                                    Command="{Binding SelectDayCommand }"
-                                    CommandParameter="{Binding Date}" 
+                                    Command="{Binding DataContext.SelectDayCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"
                                     IsEnabled="{Binding IsValid}" />    
                                 </DataTemplate>
                              </ItemsControl.ItemTemplate>
@@ -76,7 +76,7 @@
                 
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="7" Rows="3"/>
+                        <UniformGrid Columns="7"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -100,8 +100,6 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
 
-                                
-                               
                             </ItemsControl>
                         </StackPanel>
                             </Border>

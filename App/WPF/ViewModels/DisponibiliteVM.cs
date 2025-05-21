@@ -16,8 +16,17 @@ namespace WPF.ViewModels
         private DateTime currentMonth = DateTime.Today;
         public string CurrentMonth => currentMonth.ToString("MMMM yyyy", CultureInfo.GetCultureInfo("fr-FR"));
         
-        
-       
+        private DateTime selectedDate { get; set; }
+        public DateTime SelectedDate
+        {
+            get { return selectedDate; }
+            set
+            {
+                selectedDate = value;
+                OnPropertyChanged(nameof(SelectedDate));
+            }
+        }
+
         public ObservableCollection<CalendarDay> Days { get; set; }
         public ObservableCollection<CalendarDay> DaysInWeeks { get; set; }
         public ObservableCollection<Creneau> Creneaux { get; set; }
@@ -32,16 +41,18 @@ namespace WPF.ViewModels
             currentMonth = currentMonth.AddMonths(-1);
             OnPropertyChanged(nameof(CurrentMonth));
             LoadCalendar();
+            GenererCreneaux(Prestations[0]);
         }
         public void NextMonthAction()
         {
             currentMonth = currentMonth.AddMonths(1);
             OnPropertyChanged(nameof(CurrentMonth));
             LoadCalendar();
+            GenererCreneaux(Prestations[0]);
         }
         public void SelectDayAction()
+
         {
-            // Code pour sélectionner un jour
         }
         public void AjouterCreneauAction()
         {
@@ -123,23 +134,26 @@ namespace WPF.ViewModels
 
 
         }
+       
         public DisponibiliteVM()
 
 
         {
-           
+            CalendarDay day;
+            Prestations = new ObservableCollection<Prestation>();
+            Prestations.Add(
+                new(1, "Consultation", 60, "description", 700)
+                );
             PreviousMonthCommand = new RelayCommand(PreviousMonthAction);
               NextMonthCommand = new RelayCommand(NextMonthAction);
                 SelectDayCommand = new RelayCommand(SelectDayAction);
-                AjouterCreneauCommand = new RelayCommand(AjouterCreneauAction);
+            AjouterCreneauCommand = new RelayCommand(AjouterCreneauAction);
                 Days = new ObservableCollection<CalendarDay>();
                 Creneaux = new ObservableCollection<Creneau>();
                 DaysInWeeks = new ObservableCollection<CalendarDay>();
+           
             LoadCalendar();
-            Prestations = new ObservableCollection<Prestation>();
-            Prestations.Add(
-                new(1,"Consultation",60,"description",700)
-                );
+           
 
             GenererCreneaux(Prestations[0]);
             Console.WriteLine( Creneaux);
