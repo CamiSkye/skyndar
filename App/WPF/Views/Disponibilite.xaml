@@ -35,7 +35,7 @@
                     
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="0" >
                         <Button Content="-"  Command="{Binding PreviousMonthCommand}" Width="10" Height="30"  VerticalAlignment="Top"/>
-                        <TextBlock Text="{Binding CurrentMonth}"  FontSize="11" FontFamily="Baskerville Old Face" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding CurrentMonth}"  FontSize="12" FontFamily="Baskerville Old Face" TextAlignment="Center"/>
                         <Button Content="+" Command="{Binding NextMonthCommand}" Width="10" Height="30"  VerticalAlignment="Top"/>
 
                     </StackPanel>
@@ -72,6 +72,7 @@
             <!-- Créneaux horaires -->
         <StackPanel Orientation="Vertical" Grid.Column="1">
             <TextBlock Text="Créneaux disponibles" FontSize="16" FontWeight="Bold" Margin="5"/>
+            
             <ItemsControl ItemsSource="{Binding DaysInWeeks}">
                 
                 <ItemsControl.ItemsPanel>
@@ -82,27 +83,35 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="5" CornerRadius="6" Background="#FFF9F9F9">
-                        <StackPanel>
-                            <TextBlock  Text="{Binding Date, StringFormat={}{0:dddd dd}}" 
+                            <StackPanel>
+                                <TextBlock  Text="{Binding Date, StringFormat={}{0:dddd dd}}" 
                            FontWeight="Bold" 
                                FontSize="10"
                                TextAlignment="Center"
                                Margin="5"/>
-
-                            <ItemsControl ItemsSource="{Binding DataContext.Creneaux, 
-                                             RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                <ItemsControl ItemsSource="{Binding DayCreneaux}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                            <Button Content="{Binding HeureDebut}" Margin="2" 
+                                       <Button Content="{Binding HeureDebut}" Margin="2" 
                                         Padding="4" 
                                         MinWidth="60"
-                                        HorizontalAlignment="Center" />
+                                        HorizontalAlignment="Center"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
 
-                            </ItemsControl>
-                        </StackPanel>
-                            </Border>
+                                </ItemsControl>
+                                    <Border BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="5" CornerRadius="6" Background="#FFF9F9F9">
+                                        <Button Content="+" 
+                                            Command="{Binding DataContext.AjouterCreneauCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                            CommandParameter="{Binding}" 
+                                            HorizontalAlignment="Center" 
+                                            Margin="5" 
+                                            Width="30" 
+                                            FontWeight="Bold"
+                                            Background="#DDEEFF" />
+                                    </Border>
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

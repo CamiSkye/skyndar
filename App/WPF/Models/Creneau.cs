@@ -14,7 +14,7 @@ namespace WPF.Models
         public TimeOnly HeureDebut { get; set; }
         public TimeOnly HeureFin { get; set; }
 
-       public CalendarDay CalendarDay { get; set; }
+       public CalendarDay CalendarDay { get; set; }                                                       
         public int CalendarDayId { get; set; }
         public bool Cabinet { get; set; } = true;
         public int PrestationId { get; set; }   
