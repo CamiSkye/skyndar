@@ -8,8 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.VisualBasic; // Nécessite référence à Microsoft.VisualBasic
+
 using System.Windows.Input;
 using WPF.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WPF.ViewModels
 {
@@ -28,119 +31,170 @@ namespace WPF.ViewModels
                 OnPropertyChanged(nameof(SelectedDate));
             }
         }
+        private bool iscabinetchecked;
+        public bool IsCabinetChecked
+        {
+            get { return iscabinetchecked; }
+            set
+            {
+                iscabinetchecked = value;
+                OnPropertyChanged(nameof(IsCabinetChecked));
+                foreach (CalendarDay day in DaysInWeeks)
+                {
+                    filtrerCreneaux(day);
+                    OnPropertyChanged(nameof(DaysInWeeks));
+                }
+            }
+        }
+        private bool isvisiochecked;
+        public bool IsVisioChecked
+        {
+            get { return isvisiochecked; }
+            set
+            {
+                isvisiochecked = value;
+                OnPropertyChanged(nameof(IsVisioChecked));
+                foreach (CalendarDay day in DaysInWeeks)
+                {
+                    filtrerCreneaux(day);
+                    OnPropertyChanged(nameof(DaysInWeeks));
+                }
+            }
+        }
+
+        private string selectedPrestation { get; set; }
+        public string SelectedPrestation
+        {
+            get { return selectedPrestation; }
+            set
+            {
+                selectedPrestation = value;
+                OnPropertyChanged(nameof(SelectedPrestation));
+                DateTime DayInWeek = new DateTime(currentMonth.Year, currentMonth.Month, 1);
+                if (value != null)
+                {
+                    AfficherCreneaux(DayInWeek);
+
+                }
+                else
+                {
+                    GenererCreneaux(Prestations[0], DayInWeek);
+                }
+            }
+
+
+
+        }
 
         public ObservableCollection<CalendarDay> Days { get; set; }
         public ObservableCollection<CalendarDay> DaysInWeeks { get; set; }
         public ObservableCollection<Creneau> Creneaux { get; set; }
-        public ObservableCollection<Creneau> DaysCreneaux { get; set; }
+        public ObservableCollection<Creneau> DayCreneaux { get; set; }
         public ObservableCollection<Prestation> Prestations { get; set; } 
         public ICommand PreviousMonthCommand { get; set; }
         public ICommand NextMonthCommand { get; set; }
         public ICommand SelectDayCommand { get; set; }
         public ICommand AjouterCreneauCommand { get; set; }
 
+        public Prestation GetPrestationByTitre(string titre)
+        {
+            return Prestations.FirstOrDefault(p => p.Titre == titre);
+        }
+        public void filtrerCreneaux(CalendarDay day)
+        {
+            IEnumerable<Creneau> newDayCreneaux = Creneaux.Where(c => c.Date.Date == day.Date.Date).OrderBy(c=>c.HeureDebut);
+
+            IEnumerable<Creneau> filtredCreneaux = newDayCreneaux;
+
+            if (IsCabinetChecked && !IsVisioChecked)
+            {
+                filtredCreneaux = newDayCreneaux.Where(c => c.Cabinet == true);
+            }
+            else if (!IsCabinetChecked && IsVisioChecked)
+            {
+                filtredCreneaux = newDayCreneaux.Where(c => c.Cabinet == false);
+            }
+            else 
+            {
+                filtredCreneaux = newDayCreneaux;
+            }
+
+
+            day.DayCreneaux.Clear();
+            foreach (Creneau creneau in filtredCreneaux)
+            {
+                day.DayCreneaux.Add(creneau);
+            }
+        }
+
         public void PreviousMonthAction()
         {
-            DateTime DayInWeek = new DateTime(currentMonth.Year, currentMonth.Month, 1);
+            DateTime DayInWeek = new (currentMonth.Year, currentMonth.Month, 1);
             currentMonth = currentMonth.AddMonths(-1);
             OnPropertyChanged(nameof(CurrentMonth));
             LoadCalendar();
-            GenererCreneaux(Prestations[0], DayInWeek);
+            AfficherCreneaux(DayInWeek);
         }
+        
         public void NextMonthAction()
         {
-            DateTime DayInWeek = new DateTime(currentMonth.Year, currentMonth.Month, 1);
+            DateTime DayInWeek = new (currentMonth.Year, currentMonth.Month, 1);
+
             currentMonth = currentMonth.AddMonths(1);
             OnPropertyChanged(nameof(CurrentMonth));
             LoadCalendar();
-            GenererCreneaux(Prestations[0], DayInWeek);
+            AfficherCreneaux(DayInWeek);
         }
-        public void SelectDayAction(CalendarDay day)
-
-        {
-            SelectedDate = day.Date;
-            GenererCreneaux(Prestations[0], SelectedDate);
-        }
+        
         public void AjouterCreneauAction(CalendarDay day)
         {
-           MessageBox.Show("Ajouter un créneau");
-MessageBoxButton buttons = MessageBoxButton.OKCancel;
-            MessageBoxResult result = MessageBox.Show("Ajouter un créneau", "Confirmation", buttons, MessageBoxImage.Question);
-            if (result == MessageBoxResult.OK)
+            MessageBoxButton buttons = MessageBoxButton.YesNo;
+            MessageBoxResult result = MessageBox.Show("Voulez-vous ajouter un créneau ?", "Confirmation", buttons, MessageBoxImage.Question);
+            if (result != MessageBoxResult.Yes) return;
+           
+            string startTimeInput = Interaction.InputBox("Heure de début (HH:mm)", "Créneau", "08:00", -1, -1);
+           
+            if (!TimeOnly.TryParse(startTimeInput, out TimeOnly startTime) )
             {
-                // Code à exécuter si l'utilisateur clique sur "OK"
-                
-                TimeOnly startTime = new TimeOnly(8, 0);
-                TimeOnly endTime = startTime.AddMinutes(60);
-                for (int i = 0; i < DaysInWeeks.Count; i++)
-                {
-                    if (DaysInWeeks[i].Date.Date == day.Date)
-                    {
-                        startTime = DaysInWeeks[i].DayCreneaux.Last().HeureFin.AddMinutes(15);
-                        endTime = startTime.AddMinutes(60);
-
-                        Creneau creneau = new Creneau(1, startTime, endTime, true, Prestations[0], Prestations[0].Id, DaysInWeeks[i], 0);
-                        Creneaux.Add(creneau);
-
-                        DaysInWeeks[i].DayCreneaux.Add(creneau);
-                        break;
-
-                    }
-                }
-               
-                MessageBox.Show("Créneau ajouté !");
+                MessageBox.Show("Format d'heure invalide. Utilisez HH:mm.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else
+
+            if (startTime < day.DayCreneaux.Last().HeureFin.AddMinutes(15))
             {
-                // Code à exécuter si l'utilisateur clique sur "Annuler"
-                Console.WriteLine("Créneau non ajouté.");
+                MessageBox.Show("Ajouter 15 min au minumun au dernier créneau ");
+                return;
             }
-        }
-        public void GenererCreneaux( Prestation prestation, DateTime DayInWeek)
-        {
+            MessageBoxButton actions = MessageBoxButton.YesNo;
+                MessageBoxResult resultat = MessageBox.Show("Est-ce en  Cabinet ? ", "Confirmation", actions, MessageBoxImage.Question);
+                bool cabinet = (resultat == MessageBoxResult.Yes) ? true : false;
             
-            Creneaux.Clear();
-            DaysInWeeks.Clear();
-
-             
-
-            int OffsetDay = ((int)DayInWeek.DayOfWeek - (int)DayOfWeek.Monday + 7) % 7;
-            
-
-            DateTime firstMonday = DayInWeek.AddDays(-OffsetDay);
-
-            // Ajouter 7 jours (lundi à dimanche)
-            for (int i = 0; i < 7; i++)
+                 Prestation prestation = GetPrestationByTitre(SelectedPrestation);
+                TimeOnly endTime = startTime.AddMinutes(prestation.Duree);
+            for (int i = 0; i < DaysInWeeks.Count; i++)
             {
-                DateTime jour = firstMonday.AddDays(i);
-                CalendarDay day = new CalendarDay(jour, jour.Day, true);
-                DaysInWeeks.Add(day);
-            }
 
-            foreach ( var day in DaysInWeeks)
-            {
-                if (!day.IsValid) continue;
-
-                TimeOnly startTime = new TimeOnly(8, 0);
-
-                for (int j = 1; j < 4; j++)
+                if (DaysInWeeks[i].Date.Date == day.Date)
                 {
-                    
-                    TimeOnly endTime = startTime.AddMinutes(prestation.Duree);
-                    Creneau creneau = new Creneau(j, startTime, endTime, true, prestation, prestation.Id, day, 0);
-                    day.DayCreneaux.Add(creneau);
-                    startTime = endTime.AddMinutes(15);
+
+                    Creneau creneau = new(i, startTime, endTime, day.Date, cabinet, prestation, prestation.Id);
+                    Creneaux.Add(creneau);
+
+                    DaysInWeeks[i].DayCreneaux.Add(creneau);
+                    break;
+
                 }
             }
+            MessageBox.Show($"Créneau ajouté : {startTime} - {endTime} ({(cabinet ? " Cabinet " : " Visio ")})");
 
 
         }
+
         public void LoadCalendar()
         {
             Days.Clear();
 
-           
-            DateTime FirstDay = new (currentMonth.Year, currentMonth.Month,1);
+            DateTime FirstDay = new (currentMonth.Year, currentMonth.Month,1); 
             int OffsetDay = ((int)FirstDay.DayOfWeek - (int)DayOfWeek.Monday+7)%7;
 
             int DaysInMonth = DateTime.DaysInMonth(currentMonth.Year, currentMonth.Month);
@@ -166,27 +220,89 @@ MessageBoxButton buttons = MessageBoxButton.OKCancel;
             DateTime nextMonthDate = FirstDay.AddMonths(1);
             for (int i = 0; i < remainingDays; i++)
             {
-                Days.Add(new CalendarDay(nextMonthDate, nextMonthDate.Day, false));
+                
                 nextMonthDate = nextMonthDate.AddDays(1);
+                Days.Add(new CalendarDay(nextMonthDate, nextMonthDate.Day, false));
             }
 
-
-
         }
-       
-        public DisponibiliteVM()
+        public void GenererCreneaux(Prestation prestation, DateTime DayInWeek)
+        {
+            
+            DaysInWeeks.Clear();
 
+            int OffsetDay = ((int)DayInWeek.DayOfWeek - (int)DayOfWeek.Monday + 7) % 7;
+
+            DateTime firstMonday = DayInWeek.AddDays(-OffsetDay);
+
+            for (int i = 0; i < 7; i++)
+            {
+
+                DateTime jour = firstMonday.AddDays(i);
+
+                CalendarDay day = new CalendarDay(jour, jour.Day, true);
+                DaysInWeeks.Add(day);
+            }
+
+            
+            foreach (CalendarDay day in DaysInWeeks)
+            {
+                if (!day.IsValid) continue;
+
+                TimeOnly startTime = new TimeOnly(8, 0);
+
+                for (int j = 1; j < 4; j++)
+                {
+                    DateTime  date = day.Date;
+                 
+                    TimeOnly endTime = startTime.AddMinutes(prestation.Duree);
+                    Creneau creneau = new Creneau(j, startTime, endTime,date, true, prestation, prestation.Id);
+                    day.DayCreneaux.Add(creneau);
+                    startTime = endTime.AddMinutes(15);
+                }
+            }
+        }
+
+        
+        
+        public void SelectDayAction(CalendarDay day)
 
         {
-           
-            Prestations = new ObservableCollection<Prestation>();
-            Prestations.Add(
-                new(1, "Consultation", 60, "description", 700)
-                );
-            PreviousMonthCommand = new RelayCommand(PreviousMonthAction);
-              NextMonthCommand = new RelayCommand(NextMonthAction);
+            SelectedDate = day.Date;
+            AfficherCreneaux(SelectedDate);
+            
+        }
 
-                SelectDayCommand = new RelayCommand((param) => {
+
+        public void AfficherCreneaux(DateTime date)
+
+        {
+            foreach (Prestation prestation in Prestations)
+            {
+                if (prestation.Titre == SelectedPrestation)
+                {
+                    GenererCreneaux(prestation, date);
+                    break;
+                }
+            }
+        }
+
+
+        public DisponibiliteVM()
+        {
+            Prestations = new ObservableCollection<Prestation>()
+            {
+                 new(1, "Mentorat Transitionnel ~ 1h", 60, "description", 700),
+                new(1, "Mentorat Transitionnel ~ 2h", 120, "description", 700),
+                 new(1, "Mentorat Transitionnel ~ 1h30", 90, "description", 700)
+               
+            };
+           
+            PreviousMonthCommand = new RelayCommand(PreviousMonthAction);
+
+            NextMonthCommand = new RelayCommand(NextMonthAction);
+
+            SelectDayCommand = new RelayCommand((param) => {
                     if (param is CalendarDay day) SelectDayAction(day); 
                 });
 
@@ -196,13 +312,11 @@ MessageBoxButton buttons = MessageBoxButton.OKCancel;
                 Days = new ObservableCollection<CalendarDay>();
                 Creneaux = new ObservableCollection<Creneau>();
                 DaysInWeeks = new ObservableCollection<CalendarDay>();
-           
-            LoadCalendar();
+                DayCreneaux = new ObservableCollection<Creneau>();
+
             DateTime DayInWeek = new DateTime(currentMonth.Year, currentMonth.Month, 1);
-            GenererCreneaux(Prestations[0],DayInWeek);
-            
-            Console.WriteLine( Creneaux);
-            Console.WriteLine(DaysInWeeks);
+
+            LoadCalendar();
         }
 
     }

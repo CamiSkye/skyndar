@@ -7,15 +7,50 @@
         
         mc:Ignorable="d"
         Title="Accueil" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border 
+                        Name="Border"
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="10"
+                        Margin="5">
+                            <ContentPresenter 
+                            x:Name="ContentSite"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            ContentSource="Header"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FFDDDDDD"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FFE0E0E0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <TabControl TabStripPlacement="Left"  Margin="10"  >
-            <TabItem Header="Prestations" Height="Auto" Width="Auto">
+            <TabItem Header="Prestations" Height="75" Width="Auto" >
                 
             </TabItem>
-            <TabItem Header="Disponibilités"  Height="Auto">
+            <TabItem Header="Disponibilités"  Height="75"   >
                 <local:Disponibilite />
             </TabItem>
-            <TabItem Header="Clients" >
+            <TabItem Header="Historique des clients"  Height="75"  >
                
             </TabItem>
         </TabControl>

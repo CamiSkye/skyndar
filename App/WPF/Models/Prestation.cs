@@ -16,7 +16,7 @@ namespace WPF.Models
         
         public Prestation(int id, string titre,int duree, string description, double tarif)
         {
-            Id = id;
+            Id = id;                                                                                
             Titre = titre;
             Description = description;
             Tarif = tarif;

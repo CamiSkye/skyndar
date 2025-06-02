@@ -25,6 +25,7 @@ namespace WPF.Views
         {
             InitializeComponent();
             this.DataContext = new DisponibiliteVM();
+
         }
     }
 }

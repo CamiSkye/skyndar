@@ -14,12 +14,12 @@ namespace WPF.Models
         public TimeOnly HeureDebut { get; set; }
         public TimeOnly HeureFin { get; set; }
 
-       public CalendarDay CalendarDay { get; set; }                                                       
-        public int CalendarDayId { get; set; }
+        public DateTime Date { get; set; }
+       
         public bool Cabinet { get; set; } = true;
         public int PrestationId { get; set; }   
         public Prestation Prestation { get; set; }
-        public Creneau(int id, TimeOnly heureDebut, TimeOnly heureFin,  bool cabinet, Prestation prestation, int prestationId, CalendarDay calendarday, int calendarDayId)
+        public Creneau(int id, TimeOnly heureDebut, TimeOnly heureFin, DateTime date,  bool cabinet, Prestation prestation, int prestationId)
         {
             Id = id;
             HeureDebut = heureDebut;
@@ -27,8 +27,8 @@ namespace WPF.Models
             Cabinet = cabinet;
             Prestation = prestation;
             PrestationId = prestationId;
-            CalendarDay = calendarday;
-            CalendarDayId = calendarDayId;
+            Date = date;
+           
         }
     }
 }
