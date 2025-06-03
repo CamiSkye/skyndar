@@ -8,27 +8,17 @@ using System.Threading.Tasks;
 
 namespace WPF.Models
 {
-   public class Creneau
+   public class Creneau(int id, TimeSpan heureDebut, TimeSpan heureFin, bool cabinet, int dayId, int prestationId)
     {
-        public int Id { get; set; }
-        public TimeOnly HeureDebut { get; set; }
-        public TimeOnly HeureFin { get; set; }
+        public int Id { get; set; } = id;
+        public TimeSpan HeureDebut { get; set; } = heureDebut;
+        public TimeSpan HeureFin { get; set; } = heureFin;
 
-        public DateTime Date { get; set; }
-       
+        public int DayId { get; set; } = dayId; // Foreign key to CalendarDay
+
         public bool Cabinet { get; set; } = true;
-        public int PrestationId { get; set; }   
-        public Prestation Prestation { get; set; }
-        public Creneau(int id, TimeOnly heureDebut, TimeOnly heureFin, DateTime date,  bool cabinet, Prestation prestation, int prestationId)
-        {
-            Id = id;
-            HeureDebut = heureDebut;
-            HeureFin = heureFin;
-            Cabinet = cabinet;
-            Prestation = prestation;
-            PrestationId = prestationId;
-            Date = date;
-           
-        }
+        public int PrestationId { get; set; }= prestationId; // Foreign key to Prestation  
+
+
     }
 }

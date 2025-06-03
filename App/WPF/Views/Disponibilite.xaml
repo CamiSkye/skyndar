@@ -32,9 +32,9 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
-                        <Button Content="-" Command="{Binding PreviousMonthCommand}" Width="20" Height="30" VerticalAlignment="Top" />
+                        <Button Content="⏪" Command="{Binding PreviousMonthCommand}" Width="20" Height="30" VerticalAlignment="Top" />
                         <TextBlock Text="{Binding CurrentMonth}" FontSize="12" FontFamily="Baskerville Old Face" TextAlignment="Center" Margin="10,0"/>
-                        <Button Content="+" Command="{Binding NextMonthCommand}" Width="20" Height="30" VerticalAlignment="Top" />
+                        <Button Content="⏩" Command="{Binding NextMonthCommand}" Width="20" Height="30" VerticalAlignment="Top" />
                     </StackPanel>
 
                     <StackPanel Margin="10" Grid.Row="1">
@@ -91,8 +91,8 @@
                             Margin="5"/>
 
                 <ComboBox ItemsSource="{Binding Prestations}" 
-                           SelectedValue="{Binding SelectedPrestation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            SelectedValuePath="Titre"
+                           SelectedValue="{Binding SelectedPrestationId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedValuePath="Id"
                             DisplayMemberPath="Titre"
                             VerticalAlignment="Center"
                             Width="200"
@@ -128,7 +128,7 @@
                                     <ItemsControl ItemsSource="{Binding DayCreneaux}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Button Content="{Binding HeureDebut}"
+                                                    <Button Content="{Binding HeureDebut, Converter={StaticResource TimeSpanConverter}}"
                                                     Margin="2"
                                                     Padding="4"
                                                     MinWidth="60"

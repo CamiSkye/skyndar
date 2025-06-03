@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Prestation\**" />
+    <EmbeddedResource Remove="Prestation\**" />
+    <None Remove="Prestation\**" />
+    <Page Remove="Prestation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.3.0" />
   </ItemGroup>
 

@@ -7,19 +7,13 @@ using System.Threading.Tasks;
 
 namespace WPF.Models
 {
-    public class CalendarDay
+    public class CalendarDay(int id, DateTime date, int daynumber, bool isvalid = true)
     {
-        public DateTime Date { get; set; }
-        public int DayNumber { get; set; }
+        public int Id { get; set; } = id;
+        public DateTime Date { get; set; } = date;
+        public int DayNumber { get; set; } = daynumber; // 1 for Monday, 2 for Tuesday, etc.
         public bool IsValid { get; set; } = true;
-        public ObservableCollection<Creneau> DayCreneaux { get; set; }
-        public CalendarDay(DateTime date, int daynumber, bool isvalid = true)
-        {
-            
-            Date = date;
-            DayNumber = daynumber;
-            IsValid = isvalid;
-            DayCreneaux = new ObservableCollection<Creneau>();
-        }
+        public ObservableCollection<Creneau> DayCreneaux { get; set; } = [];
+
     }
 }

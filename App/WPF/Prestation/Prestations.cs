@@ -6,12 +6,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+
 using System.Data.SqlClient;
 
 namespace TestSkyndar
 {
-    public partial class Prestations: UserControl
+    /*public partial class Prestations: UserControl
     {
         SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jpegl\source\repos\TestSkyndar\TestSkyndar\Bdd.mdf;Integrated Security=True");
         public Prestations()
@@ -68,5 +68,5 @@ namespace TestSkyndar
                 }
             }
         }
-    }
+    }*/
 }
