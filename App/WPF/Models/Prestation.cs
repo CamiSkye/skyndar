@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace WPF.Models
 {
@@ -13,17 +16,15 @@ namespace WPF.Models
         public int Duree { get; set; }
         public string Description { get; set; }
         public double Tarif { get; set; }
-        
-        public Prestation(int id, string titre,int duree, string description, double tarif)
+
+        public Prestation(int id, string titre, int duree, string description, double tarif)
         {
-            Id = id;                                                                                
+            Id = id;
             Titre = titre;
             Description = description;
             Tarif = tarif;
             Duree = duree;
-            
         }
-       
-
     }
 }
+       
