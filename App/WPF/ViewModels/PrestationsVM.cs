@@ -11,6 +11,8 @@ using System.Windows.Controls;
 using Microsoft.VisualBasic;
 using System.Windows.Input;
 using WPF.Models;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace WPF.ViewModels
 {
@@ -22,6 +24,8 @@ namespace WPF.ViewModels
         public string Duree { get; set; }
         public string Tarif { get; set; }
         public string Description { get; set; }
+        public Prestation SelectedPrestation { get; set; }
+
 
         public PrestationsVM()
         {
@@ -45,6 +49,21 @@ namespace WPF.ViewModels
 
                 Titre = Duree = Tarif = Description = string.Empty;
             }
+        }
+        //Je ne suis pas sûre de l'efficacité de ce bout de code...
+        public void SupprimerPrestation()
+        {
+            if (SelectedPrestation != null)
+            {
+                Prestations.Remove(SelectedPrestation);
+                SelectedPrestation = null;
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
