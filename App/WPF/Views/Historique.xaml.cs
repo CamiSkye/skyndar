@@ -11,20 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
 using WPF.ViewModels;
+
 namespace WPF.Views
 {
     /// <summary>
-    /// Logique d'interaction pour Prestation.xaml
+    /// Logique d'interaction pour Historique.xaml
     /// </summary>
-    public partial class Prestation : UserControl
+    public partial class Historique : Window
     {
-        
-        public Prestation()
+        public Historique()
         {
-            InitializeComponent();           
-            this.DataContext = new PrestationVM();
+            InitializeComponent();
+            this.DataContext = new HistoriqueVM();
         }
     }
 }

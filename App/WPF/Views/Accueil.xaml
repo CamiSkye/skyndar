@@ -51,7 +51,7 @@
                 <local:Disponibilite />
             </TabItem>
             <TabItem Header="Historique des clients"  Height="75"  >
-               
+                <local:Historique />
             </TabItem>
         </TabControl>
 
