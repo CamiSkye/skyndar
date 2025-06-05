@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:WPF.Views"
         mc:Ignorable="d"
         Title="Historique" Height="450" Width="800">
-    <Grid>
-        <DataGrid ItemsSource="{Binding Historique}" AutoGenerateColumns="False">
+    <Grid Background="#5271ff">
+        <DataGrid ItemsSource="{Binding Historique}" AutoGenerateColumns="False" Margin="25,10,25,10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding user.username}" />
                 <DataGridTextColumn Header="Email" Binding="{Binding user.email}" />
