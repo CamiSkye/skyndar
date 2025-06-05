@@ -40,7 +40,6 @@ create table creneau(
 create table rendezvous(
     id int auto_increment primary key,
     user_id int not null,
-    
     prestation_id int not null,
     created_at timestamp default current_timestamp,
 
@@ -50,3 +49,7 @@ create table rendezvous(
 );
 insert into user (username, password, email, IsAdmin) values
 ('Bertrand', 'admin', 'Bertrand@gmail.com', true);
+insert into prestation (titre, duree, description, tarif) values
+('&kilibre *Mentorat transitionnel* ~ 1h', 60, 'Mentorat, coaching, sophrologie, hypnose, bilan de compétences, orientation scolaire et professionnelle... Libérez vos impossibles ! ', 0),
+('&kilibre *Mentorat transitionnel* ~ 2h', 120, 'Mentorat, coaching, sophrologie, hypnose, bilan de compétences, orientation scolaire et professionnelle... Libérez vos impossibles ! ', 0),
+('&kilibre *Mentorat transitionnel* ~ 1h30', 90, 'Mentorat, coaching, sophrologie, hypnose, bilan de compétences, orientation scolaire et professionnelle... Libérez vos impossibles ! ', 0)

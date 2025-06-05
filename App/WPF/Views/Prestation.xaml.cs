@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
-
+using WPF.ViewModels;
 namespace WPF.Views
 {
     /// <summary>
@@ -20,23 +20,17 @@ namespace WPF.Views
     /// </summary>
     public partial class Prestation : UserControl
     {
-        private PrestationVM vm;
+        
         public Prestation()
         {
             InitializeComponent();
-            var vm = new PrestationVM();
-            this.DataContext = vm;
+           
+            this.DataContext = new PrestationVM();
+
         }
 
 
-        private void Ajouter_Click(object sender, RoutedEventArgs e)
-        {
-            vm.AjouterPrestation();
-        }
-        private void Supprimer_Click(object sender, RoutedEventArgs e)
-        {
-            vm.SupprimerPrestation();
-        }
+     
     }
 
 }

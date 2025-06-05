@@ -84,7 +84,7 @@ namespace WPF.Services
         }
         public ObservableCollection<Prestation> GetPrestations()
         {
-            string query = "SELECT * FROM Prestations";
+            string query = "SELECT * FROM prestation";
             OpenConnection();
             MySqlCommand cmd = new(query, connection);
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -118,9 +118,9 @@ namespace WPF.Services
             cmd.ExecuteNonQuery();
             CloseConnection();
         }
-        public void AddCreneau(Creneau creneau)
+        public int AddCreneau(Creneau creneau)
         {
-            string query = "INSERT INTO creneau( day_Id, prestation_Id,starthour, endhour, cabinet ) VALUES (@DayId, @PrestationId, @HeureDebut, @HeureFin,@Cabinet)";
+            string query = "INSERT INTO creneau( day_id, prestation_id,starthour, endhour, cabinet ) VALUES (@DayId, @PrestationId, @HeureDebut, @HeureFin,@Cabinet)";
             OpenConnection();
             MySqlCommand cmd = new(query, connection);
 
@@ -131,8 +131,18 @@ namespace WPF.Services
             cmd.Parameters.AddWithValue("@PrestationId", creneau.PrestationId);
             cmd.ExecuteNonQuery();
             CloseConnection();
+            return  (int)cmd.LastInsertedId; // Get the last inserted ID
         }
-        public void insertDay(CalendarDay day)
+        public void DeleteCreneauByPrestationId(int prestationId)
+        {
+            string query = "DELETE FROM creneau WHERE prestation_id = @PrestationId";
+            OpenConnection();
+            MySqlCommand cmd = new(query, connection);
+            cmd.Parameters.AddWithValue("@PrestationId", prestationId);
+            cmd.ExecuteNonQuery();
+            CloseConnection();
+        }
+        public void InsertDay(CalendarDay day)
         {
             string query = "INSERT INTO calendarday (date, daynumber, isvalid) VALUES (@Date, @DayNumber, @IsValid)";
             OpenConnection();

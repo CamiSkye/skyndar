@@ -35,8 +35,8 @@
                          Width="200" Height="120" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
 
                 <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="147,23,0,-3">
-                    <Button Content="Ajouter" Width="100" Margin="10" Cursor="Hand" Click="Ajouter_Click" RenderTransformOrigin="0.5,0.5" Command="{Binding AjouterCommand}"/>
-                    <Button Content="Modifier" Width="100" Margin="10" Cursor="Hand" Click="Supprimer_Click" />
+                    <Button Content="Ajouter" Width="100" Margin="10" Cursor="Hand" RenderTransformOrigin="0.5,0.5" Command="{Binding AjouterCommand}"/>
+                    <Button Content="Modifier" Width="100" Margin="10" Cursor="Hand" />
                     <Button Content="Supprimer" Width="100" Margin="10" Cursor="Hand"/>
                 </StackPanel>
             </Grid>

@@ -45,7 +45,7 @@
     <Grid>
         <TabControl TabStripPlacement="Left"  Margin="10"  >
             <TabItem Header="Prestations" Height="75" Width="Auto" >
-                
+                <local:Prestation />
             </TabItem>
             <TabItem Header="Disponibilités"  Height="75"   >
                 <local:Disponibilite />

@@ -42,7 +42,7 @@ namespace WPF.ViewModels
                 OnPropertyChanged(nameof(IsCabinetChecked));
                 foreach (CalendarDay day in DaysInWeeks)
                 {
-                    filtrerCreneaux(day);
+                    FiltrerCreneaux(day);
                     OnPropertyChanged(nameof(DaysInWeeks));
                 }
             }
@@ -57,7 +57,7 @@ namespace WPF.ViewModels
                 OnPropertyChanged(nameof(IsVisioChecked));
                 foreach (CalendarDay day in DaysInWeeks)
                 {
-                    filtrerCreneaux(day);
+                    FiltrerCreneaux(day);
                     OnPropertyChanged(nameof(DaysInWeeks));
                 }
             }
@@ -89,7 +89,7 @@ namespace WPF.ViewModels
 
         public ObservableCollection<CalendarDay> Days { get; set; }
         public ObservableCollection<CalendarDay> DaysInWeeks { get; set; }
-        public ObservableCollection<Creneau> Creneaux { get; set; }
+        
         public ObservableCollection<Creneau> DayCreneaux { get; set; }
         public ObservableCollection<Prestation> Prestations { get; set; }
         public ICommand PreviousMonthCommand { get; set; }
@@ -105,11 +105,11 @@ namespace WPF.ViewModels
         {
             return DaysInWeeks.FirstOrDefault(d => d.Id == Id)?.Date ?? DateTime.MinValue;
         }
-        public void filtrerCreneaux(CalendarDay day)
+        public void FiltrerCreneaux(CalendarDay day)
         {
             DateTime date= GetDateById(day.Id);
 
-            IEnumerable<Creneau> newDayCreneaux = Creneaux.Where(c => c.DayId == day.Id);
+            IEnumerable<Creneau> newDayCreneaux = DayCreneaux.Where(c => c.DayId == day.Id);
 
             IEnumerable<Creneau> filtredCreneaux = newDayCreneaux;
 
@@ -130,9 +130,12 @@ namespace WPF.ViewModels
             day.DayCreneaux.Clear();
             foreach (Creneau creneau in filtredCreneaux)
             {
+                int newId = BDD.AddCreneau(creneau); // Insertion d'abord en BDD
+                creneau.Id = newId; // Mise à jour de l'ID
+
                 day.DayCreneaux.Add(creneau);
-                Creneaux.Add(creneau);
-                BDD.AddCreneau(creneau);
+               
+             
             }
         }
 
@@ -184,11 +187,10 @@ namespace WPF.ViewModels
 
             int id = day.DayCreneaux.Count > 0 ? day.DayCreneaux.Max(c => c.Id) + 1 : 1; 
             Creneau creneau = new(id, startTime, endTime, cabinet,day.Id, SelectedPrestationId);
-
+            int newId = BDD.AddCreneau(creneau); // Insertion d'abord en BDD
+            creneau.Id = newId; // Mise à jour de l'ID
 
             day.DayCreneaux.Add(creneau);
-            Creneaux.Add(creneau);
-            BDD.AddCreneau(creneau);
 
             MessageBox.Show($"Créneau ajouté : {startTime} - {endTime} ({(cabinet ? " Cabinet " : " Visio ")})");
 
@@ -205,7 +207,7 @@ namespace WPF.ViewModels
             int DaysInMonth = DateTime.DaysInMonth(currentMonth.Year, currentMonth.Month);
 
 
-            for (int i = 1; i <= OffsetDay; i++)
+            for (int i = 1; i < OffsetDay; i++)
             {
                 DateTime PreMonthdate = new DateTime(currentMonth.Year, currentMonth.Month, 1).AddDays(-OffsetDay +i );
 
@@ -228,11 +230,11 @@ namespace WPF.ViewModels
             int totalCells = 42;
             int remainingDays = totalCells - Days.Count;
             DateTime nextMonthDate = FirstDay.AddMonths(1);
-            for (int i = 0; i < remainingDays; i++)
+            for (int i = 1; i <= remainingDays; i++)
             {
+                DateTime date = nextMonthDate.AddDays(i);
                 
-                nextMonthDate = nextMonthDate.AddDays(1);
-                CalendarDay NextMonthDay = new CalendarDay(i, nextMonthDate, nextMonthDate.Day, false);
+                CalendarDay NextMonthDay = new (i, date, date.Day, false);
                 Days.Add(NextMonthDay);
                 
               
@@ -242,23 +244,21 @@ namespace WPF.ViewModels
         }
         public void GenererCreneaux(Prestation prestation, DateTime DayInWeek)
         {
-            
             DaysInWeeks.Clear();
-
-            
+            BDD.DeleteCreneauByPrestationId(prestation.Id);
 
             int OffsetDay = ((int)DayInWeek.DayOfWeek - (int)DayOfWeek.Monday + 7) % 7;
 
             DateTime firstMonday = DayInWeek.AddDays(-OffsetDay);
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 1; i <= 7; i++)
             {
 
-                DateTime jour = firstMonday.AddDays(i);
+                DateTime jour = firstMonday.AddDays(i-1);
 
                 CalendarDay day = new (i,jour, jour.Day, true);
                 DaysInWeeks.Add(day);
-                BDD.insertDay(day);
+                BDD.InsertDay(day);
             }
 
             
@@ -270,16 +270,20 @@ namespace WPF.ViewModels
 
                 TimeSpan startTime = new (8,0, 0);
 
-                for (int j = 1; j < 5; j++)
+                for (int j = 1; j < 4; j++)
                 {
-                    DateTime  date = day.Date;
+                    _= day.Date;
                  
                     TimeSpan endTime = startTime.Add(TimeSpan.FromMinutes(prestation.Duree));
 
                     Creneau creneau = new (j, startTime, endTime, true,day.Id, prestation.Id);
+                    int insertedId = BDD.AddCreneau(creneau); // Retourne le nouvel ID
+
+                    creneau.Id = insertedId; // Mise à jour avec l'ID réel
                     day.DayCreneaux.Add(creneau);
+                    
                     startTime = endTime.Add(TimeSpan.FromMinutes(15));
-                    Creneaux.Add(creneau);
+                   
                 }
             }
         }
@@ -311,17 +315,12 @@ namespace WPF.ViewModels
 
         public DisponibiliteVM()
         {
-            Prestations = new ObservableCollection<Prestation>()
-            {
-                 new(1, "Mentorat Transitionnel ~ 1h", 60, "description", 700),
-                new(2, "Mentorat Transitionnel ~ 2h", 120, "description", 700),
-                 new(3, "Mentorat Transitionnel ~ 1h30", 90, "description", 700)
-               
-            };
-            for (int i = 0; i < Prestations.Count; i++)
-            {
-                BDD.AddPrestation(Prestations[i]);
-            }
+                Days = [];
+                
+                DaysInWeeks = [];
+                DayCreneaux = [];
+            LoadCalendar();
+            Prestations = BDD.GetPrestations();
             
             PreviousMonthCommand = new RelayCommand(PreviousMonthAction);
 
@@ -336,14 +335,11 @@ namespace WPF.ViewModels
 
                 if (param is CalendarDay day) AjouterCreneauAction(day);
             });
-                Days = [];
-                Creneaux = [];
-                DaysInWeeks = [];
-                DayCreneaux = [];
+              
 
-            DateTime DayInWeek = new DateTime(currentMonth.Year, currentMonth.Month, 1);
+            DateTime DayInWeek = new(currentMonth.Year, currentMonth.Month, 1);
 
-            LoadCalendar();
+            
         }
 
     }

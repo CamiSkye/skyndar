@@ -1,0 +1,173 @@
+   :root {
+       --primary-color: #4a6fa5;
+       --secondary-color: #166088;
+       --light-color: #eff1f3;
+       --accent-color: #4fc3f7;
+       --danger-color: #e63946;
+   }
+
+   body {
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       margin: 0;
+       padding: 0;
+       background-color: #f5f7fa;
+       color: #333;
+   }
+
+   .header {
+       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+       color: white;
+       padding: 1.5rem;
+       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+   }
+
+   .header-content {
+       max-width: 1200px;
+       margin: 0 auto;
+       display: flex;
+       align-items: center;
+       gap: 1rem;
+   }
+
+   .logo {
+       height: 50px;
+       width: auto;
+   }
+
+   .responsable {
+       margin: 0;
+       font-size: 1.5rem;
+   }
+
+   .subtitle {
+       margin: 0;
+       font-weight: normal;
+       opacity: 0.8;
+   }
+
+   .main-container {
+       max-width: 1200px;
+       margin: 2rem auto;
+       padding: 0 1rem;
+   }
+
+   .dashboard {
+       display: flex;
+       gap: 2rem;
+       align-items: flex-start;
+   }
+
+   .calendar-card {
+       flex: 1;
+       background: white;
+       border-radius: 10px;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       padding: 1.5rem;
+   }
+
+   .slots-card {
+       flex: 1;
+       background: white;
+       border-radius: 10px;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       padding: 1.5rem;
+       max-height: 600px;
+       overflow-y: auto;
+   }
+
+   .card-title {
+       color: var(--secondary-color);
+       border-bottom: 2px solid var(--accent-color);
+       padding-bottom: 0.5rem;
+       margin-top: 0;
+   }
+
+   .week-grid {
+       display: grid;
+       grid-template-columns: repeat(7, 1fr);
+       gap: 0.5rem;
+       margin-top: 1rem;
+   }
+
+   .day-header {
+       text-align: center;
+       font-weight: bold;
+       color: var(--secondary-color);
+       padding: 0.5rem;
+   }
+
+   .day-card {
+       aspect-ratio: 1;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       border-radius: 8px;
+       transition: all 0.3s ease;
+       cursor: pointer;
+   }
+
+   .day-card.valid {
+       background-color: var(--light-color);
+       border: 2px solid var(--accent-color);
+       color: var(--secondary-color);
+   }
+
+   .day-card.invalid {
+       background-color: #f0f0f0;
+       color: #aaa;
+   }
+
+   .day-card.valid:hover {
+       transform: translateY(-3px);
+       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+       background-color: var(--accent-color);
+       color: white;
+   }
+
+   .day-card .date {
+       font-size: 1.2rem;
+       font-weight: bold;
+   }
+
+   /* Styles pour les créneaux */
+   .day-slots {
+       margin-bottom: 1.5rem;
+   }
+
+   .day-title {
+       color: var(--primary-color);
+       margin-bottom: 0.5rem;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+   }
+
+   .slot-list {
+       display: grid;
+       grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+       gap: 0.5rem;
+       list-style: none;
+       padding: 0;
+       margin: 0;
+   }
+
+   .slot-item {
+       background-color: var(--light-color);
+       border: 1px solid #ddd;
+       border-radius: 5px;
+       padding: 0.5rem;
+       text-align: center;
+       transition: all 0.2s;
+   }
+
+   .slot-item:hover {
+       background-color: var(--accent-color);
+       color: white;
+       transform: scale(1.05);
+   }
+
+   .no-slots {
+       color: #666;
+       font-style: italic;
+       padding: 0.5rem;
+   }

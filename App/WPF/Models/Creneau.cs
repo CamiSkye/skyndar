@@ -16,7 +16,7 @@ namespace WPF.Models
 
         public int DayId { get; set; } = dayId; // Foreign key to CalendarDay
 
-        public bool Cabinet { get; set; } = true;
+        public bool Cabinet { get; set; } = cabinet;
         public int PrestationId { get; set; }= prestationId; // Foreign key to Prestation  
 
 

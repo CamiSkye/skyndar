@@ -37,3 +37,5 @@ C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\WPF.pdb
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\WPF.genruntimeconfig.cache
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\ref\WPF.dll
+C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\Views\Prestation.g.cs
+C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\Views\Prestation.baml
