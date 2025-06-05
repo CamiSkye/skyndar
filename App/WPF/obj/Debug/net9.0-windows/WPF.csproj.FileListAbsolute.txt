@@ -39,3 +39,44 @@ C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\ref\WPF.dll
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\Views\Prestation.g.cs
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\Views\Prestation.baml
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\WPF.exe
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\WPF.deps.json
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\WPF.runtimeconfig.json
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\WPF.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\WPF.pdb
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\BouncyCastle.Cryptography.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\Google.Protobuf.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\K4os.Compression.LZ4.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\K4os.Compression.LZ4.Streams.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\K4os.Hash.xxHash.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\MySql.Data.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\ZstdSharp.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\runtimes\win-x64\native\comerr64.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\runtimes\win-x64\native\gssapi64.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\runtimes\win-x64\native\k5sprt64.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\runtimes\win-x64\native\krb5_64.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\runtimes\win-x64\native\krbcc64.dll
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.csproj.AssemblyReference.cache
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\MainWindow.g.cs
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\Views\Accueil.g.cs
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\Views\Disponibilite.g.cs
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\Views\Prestation.g.cs
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\App.g.cs
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF_MarkupCompile.cache
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF_MarkupCompile.lref
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\MainWindow.baml
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\Views\Accueil.baml
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\Views\Disponibilite.baml
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\Views\Prestation.baml
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.g.resources
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.AssemblyInfoInputs.cache
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.AssemblyInfo.cs
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.csproj.CoreCompileInputs.cache
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.csproj.Up2Date
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.dll
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\refint\WPF.dll
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.pdb
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.genruntimeconfig.cache
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\ref\WPF.dll

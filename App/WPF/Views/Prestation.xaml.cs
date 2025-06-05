@@ -23,14 +23,9 @@ namespace WPF.Views
         
         public Prestation()
         {
-            InitializeComponent();
-           
+            InitializeComponent();           
             this.DataContext = new PrestationVM();
 
         }
-
-
-     
     }
-
 }
