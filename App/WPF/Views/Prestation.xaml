@@ -6,10 +6,9 @@
              xmlns:local="clr-namespace:WPF.Views"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
-        <StackPanel>
-
-            <Grid Background="#77B5FE" Margin="0" Height="227">
+    <Grid Background="#5271ff">
+        <StackPanel Margin="0,10,0,0">
+            <Grid Background="#77B5FE" Height="227" Width="770">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -35,13 +34,12 @@
                          Width="200" Height="120" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
 
                 <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="147,23,0,-3">
-                    <Button Content="Ajouter" Width="100" Margin="10" Cursor="Hand" RenderTransformOrigin="0.5,0.5" Command="{Binding AjouterCommand}"/>
-                    <Button Content="Modifier" Width="100" Margin="10" Cursor="Hand" />
-                    <Button Content="Supprimer" Width="100" Margin="10" Cursor="Hand"/>
+                    <Button Content="Ajouter" Width="100" Margin="10" Cursor="Hand" RenderTransformOrigin="0.5,0.5" Command="{Binding AjouterPrestation}"/>
+                    <Button Content="Supprimer" Width="100" Margin="10" Cursor="Hand" Command="{Binding SupprimerPrestation}"/>
+                    <Button Content="Modifier" Width="100" Margin="10" Cursor="Hand" Command="{Binding ModifierPrestation}"/>
                 </StackPanel>
             </Grid>
-
-            <DataGrid x:Name="dataGridView1" Height="173" Margin="20" ItemsSource="{Binding Prestations}" SelectedItem="{Binding SelectedPrestation, Mode=TwoWay}" AutoGenerateColumns="True"/>
+            <DataGrid x:Name="dataGridView1" Height="201" ItemsSource="{Binding Prestations}" SelectedItem="{Binding SelectPrestation, Mode=TwoWay}" AutoGenerateColumns="False" Width="772"/>
         </StackPanel>
     </Grid>
 </UserControl>

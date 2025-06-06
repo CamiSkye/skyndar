@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET9_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\App.xaml
-42107036648
+5-674640860
 
-19-1842565455
+21362555807
 207779053315
-MainWindow.xaml;Views\Accueil.xaml;Views\Disponibilite.xaml;Views\Prestation.xaml;
+MainWindow.xaml;Views\Accueil.xaml;Views\Disponibilite.xaml;Views\Historique.xaml;Views\Prestation.xaml;
 
 False
 

@@ -22,9 +22,9 @@ namespace WPF.ViewModels
         public int Id { get; set; } 
         public string Titre { get; set; }
         public int Duree { get; set; }
-        public int Tarif { get; set; }
+        public double Tarif { get; set; }
         public string Description { get; set; }
-        public Prestation SelectedPrestation { get; set; }
+        public Prestation Select { get; set; }
 
 
         public PrestationVM()
@@ -40,8 +40,8 @@ namespace WPF.ViewModels
      Tarif > 0 &&
      !string.IsNullOrWhiteSpace(Description))
             {
-                Prestations.Add(
-                    new Prestation(
+                Prestations.Add(new Prestation
+                (
                     Id =Id,
                     Titre = Titre,
                     Duree = Duree,
@@ -57,13 +57,30 @@ namespace WPF.ViewModels
                 Titre = Description = string.Empty;
             }
         }
-        //Je ne suis pas sûre de l'efficacité de ce bout de code...
+
+        public void ModifierPrestation()
+        {
+            if (Select != null &&
+                    !string.IsNullOrWhiteSpace(Titre) &&
+                    Tarif > 0 &&
+                    Duree > 0 &&
+                    !string.IsNullOrWhiteSpace(Description))
+            {
+                Select.Titre = Titre;
+                Select.Duree = Duree;
+                Select.Tarif = Tarif;
+                Select.Description = Description;
+
+                OnPropertyChanged(nameof(Prestations));
+
+            }
+        }
         public void SupprimerPrestation()
         {
-            if (SelectedPrestation != null)
+            if (Select != null)
             {
-                Prestations.Remove(SelectedPrestation);
-                SelectedPrestation = null;
+                Prestations.Remove(Select);
+                Select = null;
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

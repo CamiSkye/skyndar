@@ -278,5 +278,42 @@ namespace WPF.Services
             return days;
             
         }
+
+        public ObservableCollection<RendezVous> GetRendezVous()
+        {
+            ObservableCollection<RendezVous> historique = new();
+
+            string query = "SELECT u.username, u.email, p.titre, p.tarif FROM rendezvous JOIN users u ON user_id = u.id JOIN prestation p ON prestation_id = p.id";
+
+            OpenConnection();
+
+            MySqlCommand cmd = new(query, connection);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var user = new User
+                (
+                    reader.GetInt32("userId"),
+                    reader.GetString("username"),
+                    reader.GetString("email"),
+                    reader.GetDateTime("createdat")
+                );
+
+                var prestation = new Prestation
+                (
+                    reader.GetInt32("prestationId"),
+                    reader.GetString("titre"),
+                    reader.GetInt32("duree"),
+                    reader.GetString("description"),
+                    reader.GetDouble("tarif")
+                );
+
+                var rendezvous = new RendezVous(user, prestation, user.Id, prestation.Id);
+                historique.Add(rendezvous);
+            }
+            CloseConnection();
+            return historique;
+        }
     }
 }

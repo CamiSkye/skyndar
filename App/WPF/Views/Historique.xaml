@@ -1,0 +1,19 @@
+﻿<Window x:Class="WPF.Views.Historique"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Views"
+        mc:Ignorable="d"
+        Title="Historique" Height="450" Width="800">
+    <Grid Background="#5271ff">
+        <DataGrid ItemsSource="{Binding Historique}" AutoGenerateColumns="False" Margin="25,10,25,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding user.username}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding user.email}" />
+                <DataGridTextColumn Header="Prestation" Binding="{Binding prestation.titre}" />
+                <DataGridTextColumn Header="Tarif (€)" Binding="{Binding prestation.tarif}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
