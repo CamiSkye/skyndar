@@ -39,7 +39,14 @@
                     <Button Content="Modifier" Width="100" Margin="10" Cursor="Hand" Command="{Binding ModifierPrestation}"/>
                 </StackPanel>
             </Grid>
-            <DataGrid x:Name="dataGridView1" Height="201" ItemsSource="{Binding Prestations}" SelectedItem="{Binding SelectPrestation, Mode=TwoWay}" AutoGenerateColumns="False" Width="772"/>
+            <DataGrid x:Name="dataGridView1" Height="201" ItemsSource="{Binding Prestations}" SelectedItem="{Binding Select, Mode=TwoWay}" AutoGenerateColumns="False" Width="772">
+                <DataGrid.Columns>
+                <DataGridTextColumn Header="Titre" Binding="{Binding prestation.titre}" />
+                <DataGridTextColumn Header="Tarif (€)" Binding="{Binding prestation.tarif}" />
+                <DataGridTextColumn Header="Durée" Binding="{Binding prestation.duree}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding prestation.description}" />
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </UserControl>

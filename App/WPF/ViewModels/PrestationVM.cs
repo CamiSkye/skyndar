@@ -13,6 +13,7 @@ using System.Windows.Input;
 using WPF.Models;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using WPF.Services;
 
 namespace WPF.ViewModels
 {
@@ -26,31 +27,27 @@ namespace WPF.ViewModels
         public string Description { get; set; }
         public Prestation Select { get; set; }
 
-
+        private readonly DatabaseService bdd = new();
         public PrestationVM()
         {
-            Prestations = [];
+            bdd = new DatabaseService();
+            Prestations = bdd.GetPrestations();
         }
 
         public void AjouterPrestation()
         {
-            if (Id > 0 &&
-     !string.IsNullOrWhiteSpace(Titre) &&
-     Duree > 0 &&
-     Tarif > 0 &&
-     !string.IsNullOrWhiteSpace(Description))
+            if (!string.IsNullOrWhiteSpace(Titre) &&
+                Duree > 0 &&
+                Tarif > 0 &&
+                !string.IsNullOrWhiteSpace(Description))
             {
-                Prestations.Add(new Prestation
-                (
-                    Id =Id,
-                    Titre = Titre,
-                    Duree = Duree,
-                    Description = Description,
-                    Tarif = Tarif
-                  
-                ));
+                Prestation prestation = new(0, Titre, Duree, Description, Tarif);
 
-                // Réinitialisation (selon le contexte)
+                bdd.AddPrestation(prestation);
+
+                Prestations = bdd.GetPrestations();
+                OnPropertyChanged(nameof(Prestations));
+
                 Id = 0;
                 Duree = 0;
                 Tarif = 0;
