@@ -200,8 +200,8 @@ namespace WPF.ViewModels
             for (DateTime date = firstOfMonth; date <= lastOfMonth; date = date.AddDays(1))
             {
 
-                CalendarDay tempday = new CalendarDay(0, date, date.Day, true);
-                int dayid = BDD.GetOrInsertId(tempday);
+                CalendarDay tempday = new (0, date, date.Day, true);
+                int _= BDD.GetOrInsertId(tempday);
             }
            
         }

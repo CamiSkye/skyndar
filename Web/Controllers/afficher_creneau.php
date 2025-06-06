@@ -1,51 +1,72 @@
 <?php
-require '../Models/creneaudata.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "GET" ) {
-    if (isset($_GET['id'])) {
-        $prestation_id = $_GET['id'];
+// Simuler des données pour l'exemple
+function generateCalendar($year, $month) {
+    $calendar = [];
+    $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+    
+    // Ajouter les jours du mois
+    for ($day = 1; $day <= $daysInMonth; $day++) {
+        $date = sprintf("%04d-%02d-%02d", $year, $month, $day);
+        $calendar[] = [
+            'date' => $date,
+            'daynumber' => $day,
+            'is_valid' => true
+        ];
     }
-    // generate calendar
-
-     $selected_date = isset($_GET['date']) ? $_GET['date'] : $calendrier[0]['date'];
-        $timestamp = strtotime($selected_date);
-        $week_day = date('N', $timestamp); // Lundi = 1
-        $monday = strtotime("-" . ($week_day - 1) . " days", $timestamp); 
- for ($i = 0; $i < 7; $i++) {
-
-
-        // Obtenir l'ID du jour pour la fonction
-        $day_id_map = ['Monday'=>1, 'Tuesday'=>2, 'Wednesday'=>3, 'Thursday'=>4, 'Friday'=>5, 'Saturday'=>6, 'Sunday'=>7];
-        $day_name = date('l', strtotime("+$i days", $monday));
-        $day_id = $day_id_map[$day_name];
-
-        $creneaux = GetCreneaux($prestation_id, $day_id);
-        //generate the list of creneaux for the given prestation and day
-
-    }
-    $calendrier = generatecalendrier();
-
+    
+    return $calendar;
 }
-elseif ($_SERVER["REQUEST_METHOD"] == "POST" )
-{
-    $prestation_id = $_POST['prestation_id']?? 1;
-    $selected_date = $_POST['selected_date'] ?? date('Y-m-d');
-    $timestamp = strtotime($selected_date);
-        $week_day = date('N', $timestamp); // Lundi = 1
-     for ($i = 0; $i < 7; $i++) {
 
-
-            // Obtenir l'ID du jour pour la fonction
-            $day_id_map = ['Monday'=>1, 'Tuesday'=>2, 'Wednesday'=>3, 'Thursday'=>4, 'Friday'=>5, 'Saturday'=>6, 'Sunday'=>7];
-            $day_name = date('l', strtotime("+$i days", $monday));
-            $day_id = $day_id_map[$day_name];
-
-            $creneaux = GetCreneaux($prestation_id, $day_id);
+function getCreneaux($date) {
+    // Simuler des créneaux pour la démonstration
+    $creneaux = [];
+    $types = ['cabinet', 'visio'];
+    
+    // Générer des créneaux aléatoires
+    for ($i = 8; $i < 18; $i++) { // De 8h à 18h
+        if (rand(0, 3) > 0) { // 75% de chance d'avoir un créneau
+            $type = $types[rand(0, 1)];
+            $creneaux[] = [
+                'time' => sprintf("%02d:%02d", $i, rand(0, 1)*30),
+                'type' => $type,
+                'cabinet' => $type === 'cabinet'
+            ];
         }
+    }
     
+    return $creneaux;
 }
 
+// Traitement des paramètres
+$cabinetChecked = isset($_GET['cabinet']) ? true : false;
+$visioChecked = isset($_GET['visio']) ? true : false;
 
-    
-    
+// Navigation par mois
+$monthOffset = isset($_GET['month_offset']) ? (int)$_GET['month_offset'] : 0;
+$currentDate = new DateTime();
+$currentDate->modify("$monthOffset months");
+$year = (int)$currentDate->format('Y');
+$month = (int)$currentDate->format('n');
+$monthName = $currentDate->format('F Y');
+
+// Générer le calendrier
+$calendar = generateCalendar($year, $month);
+
+// Date sélectionnée
+$selectedDate = $_GET['date'] ?? $calendar[0]['date'];
+$creneaux = getCreneaux($selectedDate);
+
+// Appliquer le filtrage
+$filteredCreneaux = [];
+foreach ($creneaux as $c) {
+    if ($cabinetChecked && !$visioChecked && $c['cabinet']) {
+        $filteredCreneaux[] = $c;
+    } elseif (!$cabinetChecked && $visioChecked && !$c['cabinet']) {
+        $filteredCreneaux[] = $c;
+    } elseif (($cabinetChecked && $visioChecked) || (!$cabinetChecked && !$visioChecked)) {
+        $filteredCreneaux[] = $c;
+    }
+}
 require '../Views/creneau.php';
+
+
