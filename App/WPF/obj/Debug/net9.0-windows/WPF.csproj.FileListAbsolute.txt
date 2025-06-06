@@ -82,3 +82,5 @@ C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\WPF.genruntimeconfig.cac
 C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\ref\WPF.dll
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\Views\Historique.g.cs
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\obj\Debug\net9.0-windows\Views\Historique.baml
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\Views\Historique.g.cs
+C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\Views\Historique.baml
