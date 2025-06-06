@@ -133,32 +133,135 @@ namespace WPF.Services
             CloseConnection();
             return  (int)cmd.LastInsertedId; // Get the last inserted ID
         }
-        public void DeleteCreneauByPrestationId(int prestationId)
+        public ObservableCollection<Creneau> GetCreneauxForPrestation(
+     int prestationId,
+     DateTime startDate,  // ex. premier lundi
+     DateTime endDate)    // ex. dimanche suivant
         {
-            string query = "DELETE FROM creneau WHERE prestation_id = @PrestationId";
+            var creneaux = new ObservableCollection<Creneau>();
+            const string query = @"
+        SELECT cr.`id`, cr.`day_id`, cr.`prestation_id`,
+               cr.`starthour`, cr.`endhour`, cr.`cabinet`
+        FROM `creneau` AS cr
+        INNER JOIN `calendarday` AS cd
+            ON cr.`day_id` = cd.`id`
+        WHERE cr.`prestation_id` = @PrestationId
+          AND cd.`date` BETWEEN @StartDate AND @EndDate
+        ORDER BY cd.`date`, cr.`starthour`
+    ";
+
             OpenConnection();
-            MySqlCommand cmd = new(query, connection);
-            cmd.Parameters.AddWithValue("@PrestationId", prestationId);
-            cmd.ExecuteNonQuery();
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+                
+                    cmd.Parameters.AddWithValue("@PrestationId", prestationId);
+                    cmd.Parameters.AddWithValue("@StartDate", startDate.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@EndDate", endDate.ToString("yyyy-MM-dd"));
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32("id");
+                            int dayId = reader.GetInt32("day_id");
+                            int prestation_Id = reader.GetInt32("prestation_id");
+                            TimeSpan startHour = reader.GetTimeSpan("starthour");
+                            TimeSpan endHour = reader.GetTimeSpan("endhour");
+                            bool cabinet = reader.GetBoolean("cabinet");
+
+                            var cr = new Creneau(id, dayId, prestation_Id, startHour, endHour, cabinet);
+                            creneaux.Add(cr);
+                        }
             CloseConnection();
+            return creneaux;
+
         }
-        public void InsertDay(CalendarDay day)
+
+
+
+
+
+
+        public int GetOrInsertId(CalendarDay day)
         {
-            string query = "INSERT INTO calendarday (date, daynumber, isvalid) VALUES (@Date, @DayNumber, @IsValid)";
+            int id = 0;
+
+            // First, try to retrieve existing ID
             OpenConnection();
-            MySqlCommand cmd = new(query, connection);
-            cmd.Parameters.AddWithValue("@Date", day.Date);
-            cmd.Parameters.AddWithValue("@DayNumber", day.DayNumber);
-            cmd.Parameters.AddWithValue("@IsValid", day.IsValid);
-            cmd.ExecuteNonQuery();
+            string selectQuery = "SELECT `id` FROM `calendarday` WHERE `date` = @Date;";
+            using (MySqlCommand selectCmd = new MySqlCommand(selectQuery, connection))
+            {
+                selectCmd.Parameters.AddWithValue("@Date", day.Date);
+                object result = selectCmd.ExecuteScalar();
+                if (result != null)
+                {
+                    id = Convert.ToInt32(result);
+                }
+            }
             CloseConnection();
+
+            // Return if found
+            if (id != 0)
+                return id;
+
+            // Insert new record if not found
+            OpenConnection();
+            string insertQuery = "INSERT INTO calendarday (date, daynumber, isvalid) VALUES (@Date, @DayNumber, @IsValid);";
+            using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
+            {
+                insertCmd.Parameters.AddWithValue("@Date", day.Date);
+                insertCmd.Parameters.AddWithValue("@DayNumber", day.DayNumber);
+                insertCmd.Parameters.AddWithValue("@IsValid", day.IsValid);
+                insertCmd.ExecuteNonQuery();
+                id = (int)insertCmd.LastInsertedId;
+            }
+            CloseConnection();
+
+            return id;
         }
-        public ObservableCollection<CalendarDay> GetDayInWeeks()
+        public ObservableCollection<CalendarDay> GetCalendarDaysBetween(DateTime startDate, DateTime endDate)
         {
-            string query = "SELECT * FROM calendarday ORDER BY date ASC  LIMIT 7 ";
+            ObservableCollection<CalendarDay> days = new ObservableCollection<CalendarDay>();
+
+            string query = @"
+        SELECT id, date, daynumber, isvalid
+        FROM calendarday
+        WHERE `date` BETWEEN @StartDate AND @EndDate
+        ORDER BY `date`
+    ";
+
+            OpenConnection();
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@StartDate", startDate.Date);
+                cmd.Parameters.AddWithValue("@EndDate", endDate.Date);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        DateTime date = reader.GetDateTime("date");
+                        int dayNumber = reader.GetInt32("daynumber");
+                        bool isValid = reader.GetBoolean("isvalid");
+
+                        CalendarDay cd = new CalendarDay(id, date, dayNumber, isValid);
+                        days.Add(cd);
+                    }
+                }
+            }
+            CloseConnection();
+
+            return days;
+        }
+
+
+        public ObservableCollection<CalendarDay> GetDayInWeeks(DateTime date )
+        {
+            string query = "SELECT * FROM calendarday where date >= @date  LIMIT 7 ";
             OpenConnection();
             ObservableCollection<CalendarDay> days = [];
             MySqlCommand cmd = new(query, connection);
+            cmd.Parameters.AddWithValue("@date", date.Date);
             MySqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())

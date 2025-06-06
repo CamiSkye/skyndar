@@ -34,7 +34,7 @@
                 
                 foreach ($calendrier as $jour) {
                     $class = $jour["is_valid"] ? "valid" : "invalid";
-                    echo '<a href="../Controllers/afficher_creneaux.php?date='.$jour["date"].'" class="day-card '.$class.'">';
+                    echo '<a href="../Controllers/afficher_creneau.php?date='.$jour["date"].'" class="day-card '.$class.'">';
                     echo '<div class="date">'.$jour["daynumber"].'</div>';
                     echo '</a>';
                 }
