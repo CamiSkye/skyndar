@@ -283,7 +283,7 @@ namespace WPF.Services
         {
             ObservableCollection<RendezVous> historique = new();
 
-            string query = "SELECT u.username, u.email, p.titre, p.tarif FROM rendezvous JOIN users u ON user_id = u.id JOIN prestation p ON prestation_id = p.id";
+            string query = "SELECT u.username, u.email, p.titre, p.tarif FROM rendezvous JOIN user u ON user_id = u.id JOIN prestation p ON prestation_id = p.id";
 
             OpenConnection();
 

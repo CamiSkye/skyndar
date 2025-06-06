@@ -162,14 +162,14 @@ namespace WPF.ViewModels
                 MessageBox.Show("Format d'heure invalide. Utilisez HH:mm.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (day.DayCreneaux.Count > 0)
-            {
+
+            
                 if (startTime < day.DayCreneaux.Last().HeureFin.Add(TimeSpan.FromMinutes(15)))
                 {
                     MessageBox.Show("Ajouter 15 min au minumun au dernier créneau ");
                     return;
                 }
-            }
+            
 
            
             MessageBoxButton actions = MessageBoxButton.YesNo;

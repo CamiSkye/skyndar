@@ -10,15 +10,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF.ViewModels;
-
+using WPF.ViewModels; // Assuming ViewModels namespace contains HistoriqueVM
 namespace WPF.Views
 {
     /// <summary>
     /// Logique d'interaction pour Historique.xaml
     /// </summary>
-    public partial class Historique : Window
+    public partial class Historique : UserControl
     {
         public Historique()
         {

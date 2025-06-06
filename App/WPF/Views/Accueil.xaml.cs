@@ -22,6 +22,7 @@ namespace WPF.Views
         public Accueil()
         {
             InitializeComponent();
+            this.DataContext = new AcueilVM();
         }
     }
 }
