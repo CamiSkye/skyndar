@@ -176,11 +176,6 @@ namespace WPF.Services
 
         }
 
-
-
-
-
-
         public int GetOrInsertId(CalendarDay day)
         {
             int id = 0;
