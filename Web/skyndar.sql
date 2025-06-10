@@ -40,10 +40,10 @@ create table creneau(
 create table rendezvous(
     id int auto_increment primary key,
     user_id int not null,
-    prestation_id int not null,
+    creneau_id int not null,
     created_at timestamp default current_timestamp,
 
-   foreign key (prestation_id) references prestation(id),
+   foreign key (creneau_id) references creneau(id),
  
    foreign key (user_id) references user(id)
 );

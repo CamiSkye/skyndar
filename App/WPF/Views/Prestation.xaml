@@ -41,10 +41,10 @@
             </Grid>
             <DataGrid x:Name="dataGridView1" Height="201" ItemsSource="{Binding Prestations}" SelectedItem="{Binding Select, Mode=TwoWay}" AutoGenerateColumns="False" Width="772">
                 <DataGrid.Columns>
-                <DataGridTextColumn Header="Titre" Binding="{Binding prestation.titre}" />
-                <DataGridTextColumn Header="Tarif (€)" Binding="{Binding prestation.tarif}" />
-                <DataGridTextColumn Header="Durée" Binding="{Binding prestation.duree}" />
-                <DataGridTextColumn Header="Description" Binding="{Binding prestation.description}" />
+                <DataGridTextColumn Header="Titre" Binding="{Binding Titre}" />
+                <DataGridTextColumn Header="Tarif (€)" Binding="{Binding Tarif}" />
+                <DataGridTextColumn Header="Durée" Binding="{Binding Duree}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

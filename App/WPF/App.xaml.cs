@@ -24,7 +24,7 @@ namespace WPF
                 typeof(FrameworkElement),
                 new FrameworkPropertyMetadata(
                     XmlLanguage.GetLanguage(culture.IetfLanguageTag)));
-        
+
             // On injecte le converter global dans les ressources
             Resources.Add("TimeSpanConverter", new TimeSpanToHourMinuteConverter());
         }

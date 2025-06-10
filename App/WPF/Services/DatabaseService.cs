@@ -138,7 +138,7 @@ namespace WPF.Services
      DateTime startDate,  // ex. premier lundi
      DateTime endDate)    // ex. dimanche suivant
         {
-            var creneaux = new ObservableCollection<Creneau>();
+            ObservableCollection<Creneau> creneaux = [];
             const string query = @"
         SELECT cr.`id`, cr.`day_id`, cr.`prestation_id`,
                cr.`starthour`, cr.`endhour`, cr.`cabinet`
@@ -151,7 +151,7 @@ namespace WPF.Services
     ";
 
             OpenConnection();
-            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlCommand cmd = new (query, connection);
                 
                     cmd.Parameters.AddWithValue("@PrestationId", prestationId);
                     cmd.Parameters.AddWithValue("@StartDate", startDate.ToString("yyyy-MM-dd"));
@@ -188,15 +188,15 @@ namespace WPF.Services
             // First, try to retrieve existing ID
             OpenConnection();
             string selectQuery = "SELECT `id` FROM `calendarday` WHERE `date` = @Date;";
-            using (MySqlCommand selectCmd = new MySqlCommand(selectQuery, connection))
-            {
-                selectCmd.Parameters.AddWithValue("@Date", day.Date);
+            MySqlCommand selectCmd = new(selectQuery, connection);
+            
+             selectCmd.Parameters.AddWithValue("@Date", day.Date);
                 object result = selectCmd.ExecuteScalar();
                 if (result != null)
                 {
                     id = Convert.ToInt32(result);
                 }
-            }
+            
             CloseConnection();
 
             // Return if found
@@ -206,54 +206,17 @@ namespace WPF.Services
             // Insert new record if not found
             OpenConnection();
             string insertQuery = "INSERT INTO calendarday (date, daynumber, isvalid) VALUES (@Date, @DayNumber, @IsValid);";
-            using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
-            {
-                insertCmd.Parameters.AddWithValue("@Date", day.Date);
-                insertCmd.Parameters.AddWithValue("@DayNumber", day.DayNumber);
-                insertCmd.Parameters.AddWithValue("@IsValid", day.IsValid);
-                insertCmd.ExecuteNonQuery();
-                id = (int)insertCmd.LastInsertedId;
-            }
+            MySqlCommand insertCmd = new(insertQuery, connection);
+            insertCmd.Parameters.AddWithValue("@Date", day.Date);
+            insertCmd.Parameters.AddWithValue("@DayNumber", day.DayNumber);
+            insertCmd.Parameters.AddWithValue("@IsValid", day.IsValid);
+            insertCmd.ExecuteNonQuery();
+            id = (int)insertCmd.LastInsertedId;
+            
             CloseConnection();
 
             return id;
         }
-        public ObservableCollection<CalendarDay> GetCalendarDaysBetween(DateTime startDate, DateTime endDate)
-        {
-            ObservableCollection<CalendarDay> days = new ObservableCollection<CalendarDay>();
-
-            string query = @"
-        SELECT id, date, daynumber, isvalid
-        FROM calendarday
-        WHERE `date` BETWEEN @StartDate AND @EndDate
-        ORDER BY `date`
-    ";
-
-            OpenConnection();
-            using (MySqlCommand cmd = new MySqlCommand(query, connection))
-            {
-                cmd.Parameters.AddWithValue("@StartDate", startDate.Date);
-                cmd.Parameters.AddWithValue("@EndDate", endDate.Date);
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int id = reader.GetInt32("id");
-                        DateTime date = reader.GetDateTime("date");
-                        int dayNumber = reader.GetInt32("daynumber");
-                        bool isValid = reader.GetBoolean("isvalid");
-
-                        CalendarDay cd = new CalendarDay(id, date, dayNumber, isValid);
-                        days.Add(cd);
-                    }
-                }
-            }
-            CloseConnection();
-
-            return days;
-        }
-
 
         public ObservableCollection<CalendarDay> GetDayInWeeks(DateTime date )
         {
@@ -281,9 +244,13 @@ namespace WPF.Services
 
         public ObservableCollection<RendezVous> GetRendezVous()
         {
-            ObservableCollection<RendezVous> historique = new();
+            ObservableCollection<RendezVous> historique = [];
 
-            string query = "SELECT u.username, u.email, p.titre, p.tarif FROM rendezvous JOIN user u ON user_id = u.id JOIN prestation p ON prestation_id = p.id";
+            string query = "SELECT u.id, u.username, u.email,u.created_at, p.titre, p.tarif,cr.* " +
+                "FROM rendezvous r " +
+                "JOIN user u ON r.user_id = u.id " +
+                "JOIN creneau cr ON r.creneau_id = cr.id " +
+                "JOIN prestation p ON p.id = cr.prestation_id ";
 
             OpenConnection();
 
@@ -292,24 +259,26 @@ namespace WPF.Services
 
             while (reader.Read())
             {
-                var user = new User
+               User user = new 
                 (
-                    reader.GetInt32("userId"),
+                    reader.GetInt32("id"),
                     reader.GetString("username"),
                     reader.GetString("email"),
-                    reader.GetDateTime("createdat")
+                    reader.GetDateTime("created_at")
                 );
 
-                var prestation = new Prestation
+                Creneau creneau = new 
                 (
-                    reader.GetInt32("prestationId"),
-                    reader.GetString("titre"),
-                    reader.GetInt32("duree"),
-                    reader.GetString("description"),
-                    reader.GetDouble("tarif")
+                   reader.GetInt32("id"),
+                   reader.GetInt32("day_id"),
+                   reader.GetInt32("prestation_id"),
+                   reader.GetTimeSpan("starthour"),
+                   reader.GetTimeSpan("endhour"),
+                   reader.GetBoolean("cabinet")
+
                 );
 
-                var rendezvous = new RendezVous(user, prestation, user.Id, prestation.Id);
+              RendezVous rendezvous = new (user, creneau, user.Id, creneau.Id);
                 historique.Add(rendezvous);
             }
             CloseConnection();

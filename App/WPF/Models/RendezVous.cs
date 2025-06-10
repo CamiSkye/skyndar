@@ -10,14 +10,14 @@ namespace WPF.Models
     {
         public User user { get; set; }
         public int UserId { get; set; }
-        public Prestation prestation { get; set; }
-        public int PrestationId { get; set; }
-        public RendezVous (User user, Prestation prestation, int userId, int prestationId)
+        public Creneau creneau { get; set; }
+        public int CreneauId { get; set; }
+        public RendezVous (User user, Creneau creneau, int userId, int creneauId )
         {
             this.user = user;
-            this.prestation = prestation;
+            this.creneau = creneau;
             UserId = userId;
-            PrestationId = prestationId;
+            CreneauId = creneauId;
         }
     }
 }

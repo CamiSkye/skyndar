@@ -18,9 +18,9 @@ using WPF.Services;
 
 namespace WPF.ViewModels
 {
-    class HistoriqueVM
+    public class HistoriqueVM
     {
-        public ObservableCollection<RendezVous> Historique { get; set; }
+        public ObservableCollection<RendezVous> Historique { get; set; } = [];
 
         private readonly DatabaseService bdd = new();
 

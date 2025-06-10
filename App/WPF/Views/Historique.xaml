@@ -10,10 +10,14 @@
         <Grid Background="#5271ff">
             <DataGrid ItemsSource="{Binding Historique}" AutoGenerateColumns="False" Margin="25,10,25,10">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nom" Binding="{Binding user.username}" />
-                    <DataGridTextColumn Header="Email" Binding="{Binding user.email}" />
-                    <DataGridTextColumn Header="Prestation" Binding="{Binding prestation.titre}" />
-                    <DataGridTextColumn Header="Tarif (€)" Binding="{Binding prestation.tarif}" />
+                    <DataGridTextColumn Header="Nom" Binding="{Binding user.Username}" />
+                    <DataGridTextColumn Header="Email" Binding="{Binding user.Email}" />
+                    <DataGridTextColumn Header="Prestation Id " Binding="{Binding creneau.PrestationId}" />
+                    <DataGridTextColumn Header="Prestation" Binding="{Binding titre}" />
+                    <DataGridTextColumn Header="Tarif (€)" Binding="{Binding tarif}" />
+                    <DataGridTextColumn Header="Heure de Debut (€)" Binding="{Binding creneau.HeureDebut}" />
+                    <DataGridTextColumn Header="Heure de Fin" Binding="{Binding creneau.HeureFin}" />
+                    
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
