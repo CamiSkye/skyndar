@@ -12,12 +12,10 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom" Binding="{Binding user.Username}" />
                     <DataGridTextColumn Header="Email" Binding="{Binding user.Email}" />
-                    <DataGridTextColumn Header="Prestation Id " Binding="{Binding creneau.PrestationId}" />
                     <DataGridTextColumn Header="Prestation" Binding="{Binding titre}" />
+                    <DataGridTextColumn Header="Date" Binding="{Binding calendarday.date}" />
                     <DataGridTextColumn Header="Tarif (€)" Binding="{Binding tarif}" />
-                    <DataGridTextColumn Header="Heure de Debut (€)" Binding="{Binding creneau.HeureDebut}" />
-                    <DataGridTextColumn Header="Heure de Fin" Binding="{Binding creneau.HeureFin}" />
-                    
+
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

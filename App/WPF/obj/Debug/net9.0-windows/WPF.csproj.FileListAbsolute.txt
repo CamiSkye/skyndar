@@ -87,3 +87,6 @@ C:\Users\jpegl\Skyndar\App\WPF\obj\Debug\net9.0-windows\Views\Historique.baml
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\bin\Debug\net9.0-windows\FluentWPF.dll
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\bin\Debug\net9.0-windows\Wpf.Ui.dll
 C:\Users\peter\OneDrive - Groupe ESIEA\S3\repo\App\WPF\bin\Debug\net9.0-windows\Wpf.Ui.Abstractions.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\FluentWPF.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\Wpf.Ui.dll
+C:\Users\jpegl\Skyndar\App\WPF\bin\Debug\net9.0-windows\Wpf.Ui.Abstractions.dll
