@@ -45,13 +45,13 @@ namespace WPF.ViewModels
 
                 bdd.AddPrestation(prestation);
 
-                Prestations = bdd.GetPrestations();
-                OnPropertyChanged(nameof(Prestations));
+                var nouvellePrestations = bdd.GetPrestations();
+                var presta = nouvellePrestations.LastOrDefault();
 
-                Id = 0;
-                Duree = 0;
-                Tarif = 0;
-                Titre = Description = string.Empty;
+                if(presta is not null)
+                {
+                    Prestations.Add(presta);
+                }
             }
         }
 

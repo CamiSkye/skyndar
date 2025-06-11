@@ -35,8 +35,8 @@
 
                 <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="147,23,0,-3">
                     <Button Content="Ajouter" Width="100" Margin="10" Cursor="Hand" RenderTransformOrigin="0.5,0.5" Click="Ajouter_Click"/>
-                    <Button Content="Supprimer" Width="100" Margin="10" Cursor="Hand" Command="{Binding SupprimerPrestation}"/>
-                    <Button Content="Modifier" Width="100" Margin="10" Cursor="Hand" Command="{Binding ModifierPrestation}"/>
+                    <Button Content="Supprimer" Width="100" Margin="10" Cursor="Hand" Click="Supprimer_Click"/>
+                    <Button Content="Modifier" Width="100" Margin="10" Cursor="Hand" Click="Modifier_Click"/>
                 </StackPanel>
             </Grid>
             <DataGrid x:Name="dataGridView1" Height="201" ItemsSource="{Binding Prestations}" SelectedItem="{Binding Select, Mode=TwoWay}" AutoGenerateColumns="False" Width="772">

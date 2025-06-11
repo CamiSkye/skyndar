@@ -34,5 +34,19 @@ namespace WPF.Views
                 vm.AjouterPrestation();
             }
         }
+        private void Supprimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is PrestationVM vm)
+            {
+                vm.SupprimerPrestation();
+            }
+        }
+        private void Modifier_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is PrestationVM vm)
+            {
+                vm.ModifierPrestation();
+            }
+        }
     }
 }
