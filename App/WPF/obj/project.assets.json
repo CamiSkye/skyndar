@@ -1679,23 +1679,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\peter\\.nuget\\packages\\": {},
+    "C:\\Users\\jpegl\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\WPF.csproj",
+      "projectUniqueName": "C:\\Users\\jpegl\\Skyndar\\App\\WPF\\WPF.csproj",
       "projectName": "WPF",
-      "projectPath": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\WPF.csproj",
-      "packagesPath": "C:\\Users\\peter\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\obj\\",
+      "projectPath": "C:\\Users\\jpegl\\Skyndar\\App\\WPF\\WPF.csproj",
+      "packagesPath": "C:\\Users\\jpegl\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jpegl\\Skyndar\\App\\WPF\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\peter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jpegl\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1704,7 +1704,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1723,7 +1722,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0-windows7.0": {
@@ -1761,7 +1760,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
