@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using WPF.ViewModels; // Assuming AcueilVM is defined in this namespace
 namespace WPF.Views
 {
     /// <summary>
@@ -22,7 +22,7 @@ namespace WPF.Views
         public Accueil()
         {
             InitializeComponent();
-            this.DataContext = new AcueilVM();
+            this.DataContext = new AccueilVM();
         }
     }
 }

@@ -133,6 +133,16 @@ namespace WPF.Services
             CloseConnection();
             return  (int)cmd.LastInsertedId; // Get the last inserted ID
         }
+
+        public void DeleteCreneau(int creneauId)
+        {
+            string query = "DELETE FROM creneau WHERE id = @CreneauId";
+            OpenConnection();
+            MySqlCommand cmd = new(query, connection);
+            cmd.Parameters.AddWithValue("@CreneauId", creneauId);
+            cmd.ExecuteNonQuery();
+            CloseConnection();
+        }
         public ObservableCollection<Creneau> GetCreneauxForPrestation(
      int prestationId,
      DateTime startDate,  // ex. premier lundi
