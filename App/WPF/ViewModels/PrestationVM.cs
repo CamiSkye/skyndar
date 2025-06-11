@@ -55,29 +55,23 @@ namespace WPF.ViewModels
             }
         }
 
-
-
         public void ModifierPrestation()
         {
-            if (Select != null &&
-                    !string.IsNullOrWhiteSpace(Titre) &&
-                    Tarif > 0 &&
-                    Duree > 0 &&
-                    !string.IsNullOrWhiteSpace(Description))
+            if (Select != null)
             {
                 Select.Titre = Titre;
                 Select.Duree = Duree;
                 Select.Tarif = Tarif;
                 Select.Description = Description;
 
-                OnPropertyChanged(nameof(Prestations));
-
+                bdd.UpdatePrestation(Select);
             }
         }
         public void SupprimerPrestation()
         {
             if (Select != null)
             {
+                bdd.DeletePrestation(Select.Id);
                 Prestations.Remove(Select);
                 Select = null;
             }
