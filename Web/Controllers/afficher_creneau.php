@@ -27,7 +27,7 @@ if ($nextmonth == 13) {
 
  $daysOfWeek = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 $calendar = generatecalendar($currentyear, $currentmonth); 
-$day_id = getday_id($selectedDate??date('Y-m-d'));
+$day_id = getday_id($selectedDate);
 $creneaux = getcreneaux($prestationId, $day_id ); 
 
 $dayOfWeek = date('N', strtotime($selectedDate)); // 1 (Lun) à 7 (Dim)

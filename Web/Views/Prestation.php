@@ -31,7 +31,7 @@
             echo '</a>';
             echo '<p>' . htmlspecialchars($Prestation['description']) . '</p>';
             echo '<p><strong><i class="fas fa-clock"></i> Durée : </strong>' . htmlspecialchars($Prestation['duree']) . ' minutes</p>';
-            echo '<p><strong><i class="fas fa-map-marker-alt"></i> Lieu : </strong>Réunion en Présentiel</p>';
+            echo '<p><strong><i class="fas fa-map-marker-alt"></i> Lieu : </strong>Présentiel ou en visio-conférence</p>';
             echo '</div>';
         }
         ?>
@@ -42,12 +42,8 @@
     <div class="footer-content">
         <p>&copy; 2023 &kilibre. Tous droits réservés.</p>
         <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.linkedin.com/in/bertrand-mangin/"><i class="fab fa-linkedin-in"></i></a>
         </div>
     </div>
-
 </body>
 </html>
