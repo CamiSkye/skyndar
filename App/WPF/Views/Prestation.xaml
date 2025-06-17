@@ -20,7 +20,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Label Content="Titre" Grid.Row="0" Grid.Column="0" Margin="10,28,10,68" Grid.RowSpan="2"/>
+                <Label Content="Libellé" Grid.Row="0" Grid.Column="0" Margin="10,28,10,68" Grid.RowSpan="2"/>
                 <TextBox x:Name="titre_pres" Grid.Row="0" Width="150" Margin="83,28,34,68" Grid.RowSpan="2" Text="{Binding Titre, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
 
                 <Label Content="Durée" Grid.Column="1" Margin="10,30,10,68" Grid.RowSpan="3"/>

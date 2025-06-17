@@ -11,7 +11,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+<<<<<<< HEAD
 
+=======
+//HEAD
+using WPF.ViewModels; // Assuming AcueilVM is defined in this namespace
+
+using WPF.ViewModels;
+
+// 3ac3ca1786f8791b23300e43bebabd050ebb879c
+>>>>>>> 5f460573c831dff733aef7659f258d965fcfa6d9
 namespace WPF.Views
 {
     /// <summary>

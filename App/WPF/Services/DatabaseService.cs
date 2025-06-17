@@ -118,6 +118,30 @@ namespace WPF.Services
             cmd.ExecuteNonQuery();
             CloseConnection();
         }
+
+        public void DeletePrestation(int id)
+        {
+            string query = "DELETE FROM prestation WHERE id = @Id";
+            OpenConnection();
+            MySqlCommand cmd = new(query, connection);
+            cmd.Parameters.AddWithValue("@Id", id);
+            cmd.ExecuteNonQuery();
+            CloseConnection();
+        }
+        public void UpdatePrestation(Prestation prestation)
+        {
+            string query = "UPDATE prestation SET titre = @Titre, duree = @Duree, tarif = @Tarif, description = @Description WHERE id = @Id";
+            OpenConnection();
+            MySqlCommand cmd = new(query, connection);
+            cmd.Parameters.AddWithValue("@Titre", prestation.Titre);
+            cmd.Parameters.AddWithValue("@Duree", prestation.Duree);
+            cmd.Parameters.AddWithValue("@Tarif", prestation.Tarif);
+            cmd.Parameters.AddWithValue("@Description", prestation.Description);
+            cmd.Parameters.AddWithValue("@Id", prestation.Id);
+            cmd.ExecuteNonQuery();
+            CloseConnection();
+        }
+
         public int AddCreneau(Creneau creneau)
         {
             string query = "INSERT INTO creneau( day_id, prestation_id,starthour, endhour, cabinet ) VALUES (@DayId, @PrestationId, @HeureDebut, @HeureFin,@Cabinet)";
