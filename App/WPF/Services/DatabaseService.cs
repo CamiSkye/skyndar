@@ -251,10 +251,11 @@ namespace WPF.Services
         {
             ObservableCollection<RendezVous> historique = [];
 
-            string query = "SELECT u.id, u.username, u.email,u.created_at, p.titre, p.tarif,cr.* " +
+            string query = "SELECT u.*, p.*,cr.*,c.* " +
                 "FROM rendezvous r " +
                 "JOIN user u ON r.user_id = u.id " +
                 "JOIN creneau cr ON r.creneau_id = cr.id " +
+                "JOIN calendarday c ON cr.day_id = c.id " +
                 "JOIN prestation p ON p.id = cr.prestation_id ";
 
             OpenConnection();
@@ -282,8 +283,23 @@ namespace WPF.Services
                    reader.GetBoolean("cabinet")
 
                 );
+                Prestation prestation = new 
+                (
+                    reader.GetInt32("id"),
+                    reader.GetString("titre"),
+                    reader.GetInt32("duree"), // Assuming duration is not retrieved here
+                    "description", // Assuming description is not retrieved here
+                    reader.GetDouble("tarif")
+                );
+                CalendarDay calendarDay = new 
+                (
+                    reader.GetInt32("id"),
+                    reader.GetDateTime("date"),
+                    reader.GetInt32("daynumber"),
+                    reader.GetBoolean("isvalid")
+                );
 
-              RendezVous rendezvous = new (user, creneau, user.Id, creneau.Id);
+                RendezVous rendezvous = new (user, creneau,calendarDay,prestation );
                 historique.Add(rendezvous);
             }
             CloseConnection();

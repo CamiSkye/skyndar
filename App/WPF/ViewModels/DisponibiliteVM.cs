@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.VisualBasic; // Nécessite référence à Microsoft.VisualBasic
+using Microsoft.VisualBasic; 
 
 using System.Windows.Input;
 using WPF.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 using WPF.Services;
 
 namespace WPF.ViewModels
@@ -29,10 +29,10 @@ namespace WPF.ViewModels
             get { return iscabinetchecked; }
             set
             {
-                if (iscabinetchecked == value) return;
                 iscabinetchecked = value;
                 OnPropertyChanged(nameof(IsCabinetChecked));
-                ApplyFilter();
+                FiltrerCreneaux();
+                OnPropertyChanged(nameof(DayCreneaux));
             }
         }
         private bool isvisiochecked;
@@ -41,10 +41,10 @@ namespace WPF.ViewModels
             get { return isvisiochecked; }
             set
             {
-                if (isvisiochecked == value) return;
                 isvisiochecked = value;
                 OnPropertyChanged(nameof(IsVisioChecked));
-               ApplyFilter();
+                FiltrerCreneaux();
+                OnPropertyChanged(nameof(DayCreneaux)); 
             }
         }
 
@@ -94,27 +94,23 @@ namespace WPF.ViewModels
         {
             return DaysInWeeks.FirstOrDefault(d => d.Id == Id)?.Date ?? DateTime.MinValue;
         }
-        public void ApplyFilter()
+       
+        public void FiltrerCreneaux()
         {
-            foreach (var day in DaysInWeeks)
+         IEnumerable<Creneau> filtered = DayCreneaux.Where(c => c.Cabinet);
+
+            if (IsCabinetChecked && !IsVisioChecked)
             {
-                FiltrerCreneaux(day);
+                filtered = DayCreneaux.Where(c => c.Cabinet);
             }
-            // On notifie que les créneaux ont changé, pas toute la collection
-            OnPropertyChanged(nameof(DaysInWeeks));
+            else if (!IsCabinetChecked && IsVisioChecked)
+            {
+                filtered = DayCreneaux.Where(c => !c.Cabinet);
+            }
+            
+           DayCreneaux = new ObservableCollection<Creneau>(filtered);
         }
-        public void FiltrerCreneaux(CalendarDay day)
-        {
-            day.DayCreneaux = new ObservableCollection<Creneau>(
-                DayCreneaux
-                    .Where(c => c.DayId == day.Id)
-                    .Where(c => {
-                        if (IsCabinetChecked && !IsVisioChecked) return c.Cabinet;
-                        if (!IsCabinetChecked && IsVisioChecked) return !c.Cabinet;
-                        return true;
-                    })
-            );
-        }
+
         public void PreviousMonthAction()
         {
             
@@ -183,8 +179,8 @@ namespace WPF.ViewModels
 
             int id = day.DayCreneaux.Count > 0 ? day.DayCreneaux.Max(c => c.Id) + 1 : 1; 
             Creneau creneau = new(id, day.Id, SelectedPrestationId,startTime, endTime, cabinet);
-            int newId = BDD.AddCreneau(creneau); // Insertion d'abord en BDD
-            creneau.Id = newId; // Mise à jour de l'ID
+            int newId = BDD.AddCreneau(creneau);
+            creneau.Id = newId; 
 
             day.DayCreneaux.Add(creneau);
 
@@ -202,11 +198,11 @@ namespace WPF.ViewModels
                 MessageBox.Show("Aucun créneau à supprimer pour ce jour.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            Creneau creneauToDelete = day.DayCreneaux.LastOrDefault(); // Suppression du dernier créneau
+            Creneau creneauToDelete = day.DayCreneaux.LastOrDefault();
             if (creneauToDelete != null)
             {
-                BDD.DeleteCreneau(creneauToDelete.Id); // Suppression en BDD
-                day.DayCreneaux.Remove(creneauToDelete); // Suppression de la collection
+                BDD.DeleteCreneau(creneauToDelete.Id);
+                day.DayCreneaux.Remove(creneauToDelete);
                 MessageBox.Show($"Créneau supprimé : {creneauToDelete.HeureDebut} - {creneauToDelete.HeureFin} ({(creneauToDelete.Cabinet ? " Cabinet " : " Visio ")})");
             }
         }
@@ -327,9 +323,9 @@ namespace WPF.ViewModels
                         TimeSpan endTime = startTime.Add(TimeSpan.FromMinutes(prestation.Duree));
 
                         Creneau creneau = new(j, day.Id, prestation.Id, startTime, endTime, true);
-                        int newCreId = BDD.AddCreneau(creneau); // Retourne le nouvel ID
+                        int newCreId = BDD.AddCreneau(creneau); 
 
-                        creneau.Id = newCreId; // Mise à jour avec l'ID réel
+                        creneau.Id = newCreId; 
                         day.DayCreneaux.Add(creneau);
 
                         startTime = endTime.Add(TimeSpan.FromMinutes(15));
@@ -367,9 +363,20 @@ namespace WPF.ViewModels
 
         public DisponibiliteVM()
         {
+            if(Days == null)
+            {
                 Days = [];
+            }
+            if (DaysInWeeks == null)
+            {
                 DaysInWeeks = [];
+            }
+            if (DayCreneaux == null)
+            {
                 DayCreneaux = [];
+            }
+
+                
                 LoadCalendar();
             Prestations = BDD.GetPrestations();
             

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendrier de rendez-vous</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <link rel="stylesheet" href="../Styles/creneau.css">
 </head>
 <body>
@@ -47,7 +47,7 @@
 
                         echo "<td><a href='?date=$date&month=$currentmonth&year=$currentyear'>  $dayNumber </a></td>";
                     } else {
-                        echo "<td></td>"; // cellule vide
+                        echo "<td></td>"; 
                     }
                         $count++;
                 }   

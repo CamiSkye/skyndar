@@ -3,7 +3,7 @@ require '../Models/userdata.php';
 if ($_SERVER['REQUEST_METHOD']=== 'GET'){
     if (isset($_GET['creneau_id'])) {
         $creneau_id = (int)$_GET['creneau_id'];
-        echo "Creneau ID: $creneau_id";
+        
     }
     else {
         $creneau_id = 1;

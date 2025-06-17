@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="stylesheet" href="../Styles/prestation.css">
-      <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
     <title>Document</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
     <div class="card-container">
        
         <?php
-        foreach ($Prestations as &$Prestation) {
+        foreach ($Prestations as $Prestation) {
             echo '<div class="card">';
             echo '<a href="../Controllers/afficher_creneau.php?id=' . htmlspecialchars($Prestation['id']) . '">';
             echo '<h3>' . htmlspecialchars($Prestation['titre']) . '</h3>';

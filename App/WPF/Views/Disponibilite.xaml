@@ -59,8 +59,8 @@
                 <!-- Checkboxes + Skyndar -->
                 <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-                        <CheckBox Content="En Cabinet" IsChecked="{Binding IsCabinetChecked, Mode=TwoWay}" Margin="5"/>
-                        <CheckBox Content="Visio" IsChecked="{Binding IsVisioChecked, Mode=TwoWay}" Margin="5"/>
+                        <CheckBox Content="En Cabinet" IsChecked="{Binding DataContext.IsCabinetChecked,RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" Margin="5"/>
+                        <CheckBox Content="Visio" IsChecked="{Binding DataContext.IsVisioChecked,RelativeSource={RelativeSource AncestorType=UserControl} ,Mode=TwoWay}" Margin="5"/>
                     </StackPanel>
                     <TextBlock Text="Skyndar" VerticalAlignment="Bottom"
                            FontSize="14" FontFamily="Segoe Script"

@@ -1,9 +1,9 @@
 <?php
 require '../Models/creneaudata.php';
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Récupérer les paramètres de la requête GET
+    
    
-    $prestationId = isset($_GET['prestation_id']) ? (int)$_GET['prestation_id'] : 1; // Valeur par défaut
+    $prestationId = isset($_GET['prestation_id']) ? (int)$_GET['prestation_id'] : 1; 
     $cabinetChecked = isset($_GET['cabinet']) && $_GET['cabinet'] === 'on';
     $visioChecked = isset($_GET['visio']) && $_GET['visio'] === 'on';
  $currentmonth =isset($_GET['month']) ? (int)$_GET['month'] :date('m'); 
@@ -30,13 +30,13 @@ $calendar = generatecalendar($currentyear, $currentmonth);
 $day_id = getday_id($selectedDate??date('Y-m-d'));
 $creneaux = getcreneaux($prestationId, $day_id ); 
 
-$dayOfWeek = date('N', strtotime($selectedDate)); // 1 (Lun) à 7 (Dim)
+$dayOfWeek = date('N', strtotime($selectedDate)); 
 
-// Obtenir la date du lundi de cette semaine
+
 $lundi = date('Y-m-d', strtotime($selectedDate . ' -' . ($dayOfWeek - 1) . ' days'));
 
 
-// Appliquer le filtrage
+
 $filteredCreneaux = [];
 foreach ($creneaux as $c) {
     if ($cabinetChecked && !$visioChecked && $c['cabinet']) {
@@ -46,7 +46,8 @@ foreach ($creneaux as $c) {
     } elseif (($cabinetChecked && $visioChecked) || (!$cabinetChecked && !$visioChecked)) {
         $filteredCreneaux[] = $c;
     }
-}} 
+}
+} 
 
 
 

@@ -8,16 +8,16 @@ namespace WPF.Models
 {
    public class RendezVous
     {
-        public User user { get; set; }
-        public int UserId { get; set; }
-        public Creneau creneau { get; set; }
-        public int CreneauId { get; set; }
-        public RendezVous (User user, Creneau creneau, int userId, int creneauId )
+        public User User { get; set; }
+        public Prestation Prestation { get; set; }
+        public Creneau Creneau { get; set; }
+        public CalendarDay CalendarDay { get; set; }
+        public RendezVous (User user, Creneau creneau, CalendarDay calendarDay, Prestation prestation)
         {
-            this.user = user;
-            this.creneau = creneau;
-            UserId = userId;
-            CreneauId = creneauId;
+            this.User = user;
+            this.Creneau = creneau;
+            this.CalendarDay = calendarDay;
+            this.Prestation = prestation;
         }
     }
 }
