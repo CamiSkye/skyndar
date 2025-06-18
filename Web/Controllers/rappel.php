@@ -50,7 +50,7 @@ foreach ($rdvs as $rdv) {
     }
 }
 
-require '../Models/rendezvousdata.php';
+require '../Models/CreneauData.php';
 require '../Models/MailService.php';
 
 $rdvs = getRendezVousDans24h();
