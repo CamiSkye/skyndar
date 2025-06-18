@@ -2,52 +2,80 @@
 require '../Models/userdata.php';
 require '../Models/creneaudata.php';
 require '../vendor/autoload.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_GET['nom']) && isset($_GET['prenom']) && isset($_GET['email']) && isset($_GET['creneau_id'])) {
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+$prestataireEmail = 'testcodelily@gmail.com'; //Test pour voir si le prestataire reçoit le mail
+$prestataireNom = 'Lily';
+
+if($_SERVER['REQUEST_METHOD']=== 'GET'){
+    if(isset($_GET['nom'], $_GET['prenom'], $_GET['email'], $_GET['creneau_id'])) {
         $nom = htmlspecialchars($_GET['nom']);
         $prenom = htmlspecialchars($_GET['prenom']);
         $email = htmlspecialchars($_GET['email']);
-
-        $creneau_id = (int) $_GET['creneau_id'];
-
+        $creneau_id = (int)$_GET['creneau_id'];
 
         $user_id = getuserid($nom, $email);
-
+        
         if ($user_id && $creneau_id) {
-
             insertrendezvous($user_id, $creneau_id);
         } else {
             echo "Erreur lors de la création de l'utilisateur.";
             exit;
         }
 
+        $heure = htmlspecialchars($creneau['starthour']) . ' à ' . htmlspecialchars($creneau['endhour']);
+        $lieu = $creneau['cabinet'] ? "au Cabinet" : "en Visio";
+    
+  
+try {
+   $mailClient = new PHPMailer(true);
+   $mailClient -> SMTD
+   $mailClient->isSMTP();
+$mailClient->Host = 'localhost'; // 'smtp.office365.com' mail donné dans le cours de Quentin
+$mailClient->Port = 80;
+$mailClient->SMTPAuth = true;
+$mailClient->SMTPSecure = 'tls';
+$mailClient->isMail(); 
+$mailClient->setFrom('zoglopiere20@gmail.com', 'Testeur');
+$mailClient->addAddress('peterzoglo@gmail.com'); //Après le test mettre ($email, "$prenom $nom")
+$mailClient-> isHTML(true);
+$mailClient->Subject = 'Test local';
+$mailClient->Body = 'Ceci est un test sans SMTP.';
+    echo 'Mail bien envoyé !';
+} catch (Exception $e) {
+    echo "Le mail n'a pas pu être envoyé. Mail Erreur: {$mailClient->ErrorInfo}";
+}
 
+} catch (Exception $e) {
+    echo "Erreur : {$mail->ErrorInfo}";
+}
 
+try 
+{
+    $mailPro = new PHPMailer(true);
+    $mailPro->isMail();
+    $mailPro->setFrom('zoglopiere20@gmail.com', 'Skyndar');
+    $mailPro->addAddress($prestataireEmail, $prestataireNom);
+    $mailPro -> isHTML(true);
+    $mailPro->Subject = 'Nouveau rendez-vous réservé';
+    $mailPro->Body = "Un nouveau RDV vient d’être réservé !\n\n"
+                    . "Client : $prenom $nom\n"
+                    . "Email : $email\n"
+                    . "Heure : $heure\n"
+                    . "Lieu : $lieu\n\n"
+                    . "Merci de bien vouloir préparer ce créneau";
 
-        try {
-            $mail = new PHPMailer(true);
-            $mail->isSMTP();
-            $mail->Host = 'localhost';
-            $mail->Port = 587;
-            $mail->SMTPAuth = true;
-            $mail->isMail();
-            $mail->setFrom('zoglopiere20@gmail.com', 'Testeur');
-            $mail->addAddress('peterzoglo@gmail.com');
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Subject = 'Test local';
-            $mail->Body = 'Ceci est un test sans SMTP.';
-
-            if ($mail->send()) {
-                echo "Mail envoyé  !";
-            } else {
-                echo "Erreur : " . $mail->ErrorInfo;
-            }
-
-        } catch (Exception $e) {
-            echo "Erreur : {$mail->ErrorInfo}";
-        }
+    $mailPro->send();
+    echo 'Mail bien envoyé !';
+} catch (Exception $e) {
+    echo "Le mail n'a pas pu être envoyé. Mail Erreur: {$mailPro->ErrorInfo}";
+}
 
     } else {
         echo "Paramètres manquants.";
@@ -58,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (!$creneau) {
         echo "Creneau non trouvé.";
         exit;
-    }
 } else {
     echo "Invalid request method.";
 }
