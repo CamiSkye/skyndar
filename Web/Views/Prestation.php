@@ -40,7 +40,7 @@
 
 <footer class="footer">
     <div class="footer-content">
-        <p>&copy; 2023 &kilibre. Tous droits réservés.</p>
+        <p>&copy; 2025 &kilibre. Tous droits réservés.</p>
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/bertrand-mangin/"><i class="fab fa-linkedin-in"></i></a>
         </div>

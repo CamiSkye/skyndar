@@ -311,8 +311,8 @@ namespace WPF.Services
                 (
                     reader.GetInt32("id"),
                     reader.GetString("titre"),
-                    reader.GetInt32("duree"), // Assuming duration is not retrieved here
-                    "description", // Assuming description is not retrieved here
+                    reader.GetInt32("duree"), 
+                    "description", 
                     reader.GetDouble("tarif")
                 );
                 CalendarDay calendarDay = new 

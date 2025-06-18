@@ -97,18 +97,37 @@ namespace WPF.ViewModels
        
         public void FiltrerCreneaux()
         {
-         IEnumerable<Creneau> filtered = DayCreneaux.Where(c => c.Cabinet);
+            
 
             if (IsCabinetChecked && !IsVisioChecked)
             {
-                filtered = DayCreneaux.Where(c => c.Cabinet);
+                DayCreneaux.Clear();
+                foreach (CalendarDay day in DaysInWeeks)
+                {
+                    List<Creneau> filtered = [.. day.DayCreneaux.Where(c => c.Cabinet == false)];
+                    foreach (Creneau creneau in filtered)
+                    {
+                        day.DayCreneaux.Remove(creneau);
+                    }
+                   
+                }
             }
             else if (!IsCabinetChecked && IsVisioChecked)
             {
-                filtered = DayCreneaux.Where(c => !c.Cabinet);
+                
+                foreach (CalendarDay day in DaysInWeeks.ToList())
+                {
+                    List<Creneau> filtered = [.. day.DayCreneaux.Where(c => c.Cabinet == true)];
+                    foreach (Creneau creneau in filtered)
+                    {
+                        day.DayCreneaux.Remove(creneau);
+                    }
+                   
+
+                }
             }
-            
-           DayCreneaux = new ObservableCollection<Creneau>(filtered);
+
+                
         }
 
         public void PreviousMonthAction()
