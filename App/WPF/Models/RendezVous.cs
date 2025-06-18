@@ -8,6 +8,7 @@ namespace WPF.Models
 {
    public class RendezVous
     {
+        public int Id {get; set;}
         public User User { get; set; }
         public Prestation Prestation { get; set; }
         public Creneau Creneau { get; set; }

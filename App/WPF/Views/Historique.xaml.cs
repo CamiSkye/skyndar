@@ -25,5 +25,13 @@ namespace WPF.Views
             InitializeComponent();
             this.DataContext = new HistoriqueVM();
         }
+
+        private void Supprimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is HistoriqueVM vm)
+            {
+                vm.SupprimerRendezVous();
+            }
+        }
     }
 }

@@ -142,6 +142,16 @@ namespace WPF.Services
             CloseConnection();
         }
 
+        public void DeleteRendezVous(int id)
+        {
+            string query = "DELETE FROM rendezvous WHERE id = @Id";
+            OpenConnection();
+            MySqlCommand cmd = new(query, connection);
+            cmd.Parameters.AddWithValue("@Id", id);
+            cmd.ExecuteNonQuery();
+            CloseConnection();
+        }
+
         public int AddCreneau(Creneau creneau)
         {
             string query = "INSERT INTO creneau( day_id, prestation_id,starthour, endhour, cabinet ) VALUES (@DayId, @PrestationId, @HeureDebut, @HeureFin,@Cabinet)";

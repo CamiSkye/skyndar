@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF.Views"
         mc:Ignorable="d"
-        Title="Accueil" Height="450" Width="800">
+        Title="Accueil" Height="450" Width="800"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="TabItem">
             <Setter Property="Template">
@@ -36,18 +38,22 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Background" Value="#7ba6fe"/>
+            <Setter Property="BorderBrush" Value="#7ba6fe"/>
         </Style>
     </Window.Resources>
 
     <Grid>
-        <TabControl TabStripPlacement="Left"  Margin="10"  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="737*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl TabStripPlacement="Left"  Margin="10,10,10,10" Grid.ColumnSpan="2"  >
             <TabItem Header="Prestations" Height="75" Width="Auto" >
                 <local:Prestation Cursor="Hand"/>
             </TabItem>
             <TabItem Header="Disponibilités"  Height="75"   >
-                <local:Disponibilite Cursor="Hand" />
+                <local:Disponibilite Cursor="Hand" Margin="0,0,-13,0" />
             </TabItem>
             <TabItem Header="Historique des clients"  Height="75">
                 <local:Historique Cursor="Hand"/>
