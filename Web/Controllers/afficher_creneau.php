@@ -3,7 +3,7 @@ require '../Models/creneaudata.php';
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 
-    $prestationId = isset($_GET['prestation_id']) ? (int) $_GET['prestation_id'] : 1;
+    $prestationId = isset($_GET['id']) ? (int) $_GET['id'] : 1;
     $cabinetChecked = isset($_GET['cabinet']) && $_GET['cabinet'];
 
     $visioChecked = isset($_GET['visio']) && $_GET['visio'];
@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $currentyear = isset($_GET['year']) ? (int) $_GET['year'] : date('Y');
     $selectedDate = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 
+    $prestationId = $prestationId;
     $prevmonth = $currentmonth - 1;
     $prevyear = $currentyear;
     if ($prevmonth == 0) {
@@ -36,8 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $lundi = date('Y-m-d', strtotime($selectedDate . ' -' . ($dayOfWeek - 1) . ' days'));
 
-
+    require '../Views/creneau.php';
 
 }
-
-require '../Views/creneau.php';

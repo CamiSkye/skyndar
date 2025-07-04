@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualBasic; 
+using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using Microsoft.VisualBasic; 
-
 using System.Windows.Input;
 using WPF.Models;
-
 using WPF.Services;
+
 
 namespace WPF.ViewModels
 {
     public class DisponibiliteVM : MainVM
     {
+
         private DateTime currentMonth = DateTime.Today;
         public string CurrentMonth => currentMonth.ToString("MMMM yyyy", CultureInfo.GetCultureInfo("fr-FR"));
 
@@ -90,11 +85,7 @@ namespace WPF.ViewModels
         {
             return Prestations.FirstOrDefault(p => p.Id == Id)?.Duree ?? 0;
         }
-        public DateTime GetDateById(int Id)
-        {
-            return DaysInWeeks.FirstOrDefault(d => d.Id == Id)?.Date ?? DateTime.MinValue;
-        }
-       
+     
         public void FiltrerCreneaux()
         {
             
@@ -146,7 +137,7 @@ namespace WPF.ViewModels
             CalendarDay dummyDay = new (dayId, firstOfMonth, 1, true);
             AfficherCreneaux(dummyDay); ;
         }
-
+        
         public void NextMonthAction()
         {
 
@@ -207,21 +198,32 @@ namespace WPF.ViewModels
 
 
         }
-        public void SupprimerCreneauAction(CalendarDay day)
+        public void SupprimerCreneauAction(Creneau creneau)
         {
+
             MessageBoxButton buttons = MessageBoxButton.YesNo;
             MessageBoxResult result = MessageBox.Show("Voulez-vous supprimer ce créneau ?", "Confirmation", buttons, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes) return;
-            if (day.DayCreneaux.Count == 0)
+
+            CalendarDay day = BDD.GetDayFromCreneauId(creneau.Id);
+            ObservableCollection<Creneau> existingcreneaux = BDD.GetCreneauxForPrestation(SelectedPrestationId,day.Date,day.Date);
+            if (existingcreneaux.Any())
             {
-                MessageBox.Show("Aucun créneau à supprimer pour ce jour.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
+                foreach (Creneau cr in existingcreneaux)
+                {
+                    day.DayCreneaux.Add(cr);
+
+                }
+
             }
-            Creneau creneauToDelete = day.DayCreneaux.LastOrDefault();
+           
+
+            Creneau creneauToDelete =   day.DayCreneaux.FirstOrDefault(c=>c.Id == creneau.Id);
             if (creneauToDelete != null)
             {
                 BDD.DeleteCreneau(creneauToDelete.Id);
                 day.DayCreneaux.Remove(creneauToDelete);
+                OnPropertyChanged(nameof(DaysInWeeks));
                 MessageBox.Show($"Créneau supprimé : {creneauToDelete.HeureDebut} - {creneauToDelete.HeureFin} ({(creneauToDelete.Cabinet ? " Cabinet " : " Visio ")})");
             }
         }
@@ -415,7 +417,7 @@ namespace WPF.ViewModels
 
             SupprimerCreneauCommand = new RelayCommand((param) => {
 
-                if (param is CalendarDay sday) SupprimerCreneauAction(sday);
+                if (param is Creneau creneau) SupprimerCreneauAction(creneau);
             });
 
 

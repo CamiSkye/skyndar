@@ -23,7 +23,7 @@ function getreservedcreneaux($creneau_id)
 function getcreneaubyid($creneau_id)
 {
     global $db;
-    $query = $db->prepare('SELECT * FROM creneau WHERE id = :creneau_id');
+    $query = $db->prepare('SELECT cr.* , c.date FROM creneau AS cr JOIN calendarday AS c ON cr.day_id = c.id WHERE cr.id = :creneau_id');
     $query->bindParam(':creneau_id', $creneau_id);
 
     $query->execute();

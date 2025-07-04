@@ -45,5 +45,6 @@ namespace WPF
         {
             return TimeSpan.TryParse(value?.ToString(), out var ts) ? ts : TimeSpan.Zero;
         }
+
     }
 }

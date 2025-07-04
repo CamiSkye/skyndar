@@ -55,9 +55,91 @@
               "target": "Package",
               "version": "[0.10.2, )"
             },
+            "MahApps.Metro": {
+              "target": "Package",
+              "version": "[2.4.10, )"
+            },
+            "MahApps.Metro.IconPacks": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "MahApps.Metro.IconPacks.Core": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "MahApps.Metro.IconPacks.FontAwesome": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "MahApps.Metro.IconPacks.Material": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "MahApps.Metro.IconPacks.MaterialDesign": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "MahApps.Metro.IconPacks.MaterialLight": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "MahApps.Metro.IconPacks.Modern": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "MahApps.Metro.IconPacks.SimpleIcons": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "MahApps.Metro.Resources": {
+              "target": "Package",
+              "version": "[0.6.1, )"
+            },
+            "MahApps.Metro.SimpleChildWindow": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
+            "Material.Avalonia.DataGrid": {
+              "target": "Package",
+              "version": "[3.12.0, )"
+            },
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            },
+            "MaterialDesignThemes.MahApps": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            },
+            "MaterialDesignThemes.MahApps.163": {
+              "target": "Package",
+              "version": "[0.0.111, )"
+            },
+            "MaterialDesignThemes.Wpf": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "MaterialDesignThemesTest.Wpf": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "ModernWpfUI.MahApps": {
+              "target": "Package",
+              "version": "[0.9.5, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[9.3.0, )"
+            },
+            "Syncfusion.Themes.MaterialLight.WPF": {
+              "target": "Package",
+              "version": "[30.1.37, )"
             },
             "WPF-UI": {
               "target": "Package",
@@ -83,7 +165,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

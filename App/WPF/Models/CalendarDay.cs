@@ -11,7 +11,7 @@ namespace WPF.Models
     {
         public int Id { get; set; } = id;
         public DateTime Date { get; set; } = date;
-        public int DayNumber { get; set; } = daynumber; // 1 for Monday, 2 for Tuesday, etc.
+        public int DayNumber { get; set; } = daynumber; 
         public bool IsValid { get; set; } = isvalid;
         public ObservableCollection<Creneau> DayCreneaux { get; set; } = [];
 

@@ -3,110 +3,108 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:WPF.Views" xmlns:viewmodels="clr-namespace:WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:DisponibiliteVM}"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#5271ff">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="BlueAccentBrush" Color="#2196F3"/>
+
+        <Style x:Key="RoundedAccentButton" TargetType="Button" >
+            <Setter Property="Background" Value="{StaticResource BlueAccentBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Border.RenderTransform>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="bd"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                             To="1.05" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="bd"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                             To="1.05" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="bd"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                             To="1.0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="bd"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                             To="1.0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{DynamicResource WindowBackground}" Margin="12">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Colonne de gauche -->
-        <Border Grid.Column="0" Margin="10" Background="#77B5FE" CornerRadius="12" Padding="10" BorderBrush="Gray" BorderThickness="1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.67*" />
-                    <RowDefinition Height="0.33*" />
-                </Grid.RowDefinitions>
-
-                <!-- Header mois -->
-                <Grid Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="8*" />
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
-                        <Button Content="⏪" Command="{Binding PreviousMonthCommand}" Width="20" Height="30" VerticalAlignment="Top" />
-                        <TextBlock Text="{Binding CurrentMonth}" FontSize="12" FontFamily="Baskerville Old Face" TextAlignment="Center" Margin="10,0"/>
-                        <Button Content="⏩" Command="{Binding NextMonthCommand}" Width="20" Height="30" VerticalAlignment="Top" />
-                    </StackPanel>
-
-                    <StackPanel Margin="10" Grid.Row="1">
-                        <ItemsControl ItemsSource="{Binding Days}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <UniformGrid Columns="7"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Button Content="{Binding DayNumber}"
-                                        Command="{Binding DataContext.SelectDayCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                        CommandParameter="{Binding}"
-                                        IsEnabled="{Binding IsValid}" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </Grid>
-
-                <!-- Checkboxes + Skyndar -->
-                <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-                        <CheckBox Content="En Cabinet" IsChecked="{Binding IsCabinetChecked, Mode=TwoWay}"  Margin="5"/>
-                        <CheckBox  Content="Visio" IsChecked="{Binding IsVisioChecked , Mode=TwoWay}" Margin="5"/>
-                    </StackPanel>
-                    <TextBlock Text="Skyndar" VerticalAlignment="Bottom"
-                           FontSize="14" FontFamily="Segoe Script"
-                           HorizontalAlignment="Center"/>
+        <!-- Calendrier -->
+        <Border Grid.Column="0" Margin="8" Background="{DynamicResource CardBackground}" CornerRadius="12" Padding="10" BorderBrush="{DynamicResource SystemControlBackgroundBaseLowBrush}" BorderThickness="1">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 10">
+                    <Button Content="⏪" Command="{Binding PreviousMonthCommand}" Style="{StaticResource RoundedAccentButton}" Width="32" Height="32" Margin="5"/>
+                    <TextBlock Text="{Binding CurrentMonth}" FontSize="16" FontWeight="Bold" Margin="10,0" VerticalAlignment="Center" Foreground="{DynamicResource TextPrimary}"/>
+                    <Button Content="⏩" Command="{Binding NextMonthCommand}" Style="{StaticResource RoundedAccentButton}" Width="32" Height="32" Margin="5"/>
                 </StackPanel>
-            </Grid>
+
+                <ItemsControl ItemsSource="{Binding Days}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="7"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding DayNumber}" Command="{Binding DataContext.SelectDayCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" IsEnabled="{Binding IsValid}" Margin="3" Style="{StaticResource RoundedAccentButton}" FontWeight="Bold" MinWidth="30" MinHeight="30"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,20,10,0">
+                    <CheckBox Content="En Cabinet" IsChecked="{Binding IsCabinetChecked}" Margin="5"/>
+                    <CheckBox Content="Visio" IsChecked="{Binding IsVisioChecked}" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
         </Border>
 
-        <!-- Colonne de droite : Créneaux -->
-        <Border Grid.Column="1" Margin="10" Background="#FFF5F5F5" CornerRadius="12" Padding="10" BorderBrush="Gray" BorderThickness="1">
-        <Grid Grid.Column="1" Background="#77B5FE">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="6*" />
-            </Grid.RowDefinitions>
-            <!-- Prestations -->
-            <StackPanel Orientation="Horizontal"
-                        Grid.Row="0"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Margin="10"  >
+        <!-- Détails créneaux -->
+        <Border Grid.Column="1" Margin="8" Background="{DynamicResource CardBackground}" CornerRadius="12" Padding="10" BorderBrush="{DynamicResource SystemControlBackgroundBaseLowBrush}" BorderThickness="1">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <TextBlock Text="Prestations" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource TextPrimary}" Margin="5"/>
+                    <ComboBox ItemsSource="{Binding Prestations}" SelectedValue="{Binding SelectedPrestationId}" SelectedValuePath="Id" DisplayMemberPath="Titre" Width="200" Margin="5"/>
+                </StackPanel>
 
-                <TextBlock Text="Prestations"
-                            VerticalAlignment="Center"
-                            FontSize="16" 
-                            FontFamily="Baskerville Old Face" 
-                            FontWeight="Bold"
-                            Margin="5"/>
-
-                <ComboBox ItemsSource="{Binding Prestations}" 
-                           SelectedValue="{Binding SelectedPrestationId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            SelectedValuePath="Id"
-                            DisplayMemberPath="Titre"
-                            VerticalAlignment="Center"
-                            Width="200"
-                            Margin="5"/>
-
-
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Row="1" Margin="5">
-                <TextBlock Text="Créneaux disponibles"
-                       TextAlignment="Center"
-                       FontFamily="Baskerville Old Face"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Margin="5"/>
+                <TextBlock Text="Créneaux disponibles" FontSize="16" FontWeight="Bold" TextAlignment="Center" Margin="10" Foreground="{DynamicResource TextPrimary}"/>
 
                 <ItemsControl ItemsSource="{Binding DaysInWeeks}">
                     <ItemsControl.ItemsPanel>
@@ -114,49 +112,27 @@
                             <UniformGrid Columns="7"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="5" CornerRadius="6" Background="#FFF9F9F9">
+                            <Border BorderBrush="{DynamicResource SystemControlBackgroundBaseLowBrush}" BorderThickness="1" Margin="5" CornerRadius="8" Background="{DynamicResource WindowBackground}" Padding="6">
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Date, StringFormat={}{0:dddd dd MMMM}}"
-                                           FontWeight="Bold"
-                                           FontSize="10"
-                                           TextAlignment="Center"
-                                           Margin="5"/>
+                                    <TextBlock Text="{Binding Date, StringFormat={}{0:dddd dd MMMM}}" FontSize="12" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource TextSecondary}" Margin="0,0,0,5"/>
 
                                     <ItemsControl ItemsSource="{Binding DayCreneaux}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                    <Button Content="{Binding HeureDebut, Converter={StaticResource TimeSpanConverter}}"
-                                                            Command="{Binding DataContext.SupprimerCreneauCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                            CommandParameter="{Binding}"
-                                                            
-                                                    Margin="2"
-                                                    Padding="4"
-                                                    MinWidth="60"
-                                                    HorizontalAlignment="Center"/>
+                                                <Button Content="{Binding HeureDebut, Converter={StaticResource TimeSpanConverter}}" Command="{Binding DataContext.SupprimerCreneauCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Margin="2" Padding="4" MinWidth="60" Style="{StaticResource RoundedAccentButton}" FontWeight="SemiBold"/>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
 
-                                    <Border BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="5" CornerRadius="6" Background="#FFF9F9F9">
-                                        <Button Content="+"
-                                            Command="{Binding DataContext.AjouterCreneauCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                            CommandParameter="{Binding}"
-                                            HorizontalAlignment="Center"
-                                            Margin="5"
-                                            Width="30"
-                                            FontWeight="Bold"
-                                            Background="#DDEEFF"/>
-                                    </Border>
+                                    <Button Content="+" Command="{Binding DataContext.AjouterCreneauCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Width="32" Height="32" HorizontalAlignment="Center" Style="{StaticResource RoundedAccentButton}" FontWeight="Bold" Margin="6"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
-        </Grid>
-            </Border>
+        </Border>
     </Grid>
 </UserControl>

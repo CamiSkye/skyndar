@@ -157,7 +157,30 @@ namespace WPF.Services
             CloseConnection();
             return  (int)cmd.LastInsertedId; // Get the last inserted ID
         }
+        public CalendarDay GetDayFromCreneauId(int creneauId)
+        {
+            string query = "SELECT c.* FROM calendarday AS c JOIN creneau AS cr on  c.id = cr.day_id WHERE cr.id = @id";
+            OpenConnection();
+            CalendarDay day =null;
+            MySqlCommand cmd = new(query, connection);
+            cmd.Parameters.AddWithValue("@id", creneauId);
+            
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read()) {
 
+                day = new
+               (
+                   reader.GetInt32("id"),
+                   reader.GetDateTime("date"),
+                   reader.GetInt32("daynumber"),
+                   reader.GetBoolean("isvalid")
+               );
+            }
+            
+            CloseConnection();
+            return day;
+
+        }
         public void DeleteCreneau(int creneauId)
         {
             string query = "DELETE FROM creneau WHERE id = @CreneauId";
@@ -169,8 +192,8 @@ namespace WPF.Services
         }
         public ObservableCollection<Creneau> GetCreneauxForPrestation(
      int prestationId,
-     DateTime startDate,  // ex. premier lundi
-     DateTime endDate)    // ex. dimanche suivant
+     DateTime startDate,  
+     DateTime endDate)    
         {
             ObservableCollection<Creneau> creneaux = [];
             const string query = @"
@@ -214,7 +237,6 @@ namespace WPF.Services
         {
             int id = 0;
 
-            // First, try to retrieve existing ID
             OpenConnection();
             string selectQuery = "SELECT `id` FROM `calendarday` WHERE `date` = @Date;";
             MySqlCommand selectCmd = new(selectQuery, connection);
@@ -228,11 +250,10 @@ namespace WPF.Services
             
             CloseConnection();
 
-            // Return if found
             if (id != 0)
                 return id;
 
-            // Insert new record if not found
+           
             OpenConnection();
             string insertQuery = "INSERT INTO calendarday (date, daynumber, isvalid) VALUES (@Date, @DayNumber, @IsValid);";
             MySqlCommand insertCmd = new(insertQuery, connection);

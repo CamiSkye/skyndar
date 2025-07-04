@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Styles/creneau.css">
     <title>Calendrier de rendez-vous</title>
 
-    <link rel="stylesheet" href="../Styles/creneau.css">
 </head>
 
 <body>
@@ -17,26 +17,27 @@
             <h6 class="subtitle">Rendez-vous</h6>
         </div>
     </header>
-    <section>
-        <div class="calendar-container">
 
-            <div class="navigation">
-                <a href="?month=<?php echo $prevmonth; ?>&year=<?php echo $prevyear; ?>" class="prev-month"><i
-                        class="fas fa-chevron-left">&lt</i></a>
+    <div class="main-container">
+        <div class="left-section">
 
-                <?php echo date('F Y', strtotime(sprintf('%04d-%02d-01', $currentyear, $currentmonth))); ?>
+            <div class="calendar-container">
+                <div class="navigation">
+                    <a href="?month=<?php echo $prevmonth; ?>&year=<?php echo $prevyear; ?>&id="
+                        <?php echo $prestationId; ?> class="prev-month"><i class="fas fa-chevron-left">&lt;</i></a>
+                    <?php
+                    setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
+                    echo strftime('%B %Y', strtotime(sprintf('%04d-%02d-01', $currentyear, $currentmonth)));
+                    ?>
+                    <a href="?month=<?php echo $nextmonth; ?>&year=<?php echo $nextyear; ?>&id="
+                        <?php echo $prestationId; ?> class="next-month"><i class="fas fa-chevron-right">&gt;</i></a>
+                </div>
 
-                <a href="?month=<?php echo $nextmonth; ?>&year=<?php echo $nextyear; ?>" class="next-month"><i
-                        class="fas fa-chevron-right">&gt</i></a>
                 <table border="1" cellpadding="8" cellspacing="0">
                     <tr>
-                        <?php
-
-                        foreach ($daysOfWeek as $day) {
+                        <?php foreach ($daysOfWeek as $day) {
                             echo "<th>$day</th>";
-                        }
-                        ?>
-
+                        } ?>
                     </tr>
                     <tbody>
                         <?php
@@ -48,8 +49,7 @@
                                 if ($cell && isset($cell['date'])) {
                                     $date = $cell['date'];
                                     $dayNumber = date('d', strtotime($date));
-
-                                    echo "<td><a href='?date=$date&month=$currentmonth&year=$currentyear'>  $dayNumber </a></td>";
+                                    echo "<td><a href='?date=$date&month=$currentmonth&year=$currentyear'>$dayNumber</a></td>";
                                 } else {
                                     echo "<td></td>";
                                 }
@@ -61,63 +61,87 @@
                     </tbody>
                 </table>
             </div>
-            <div class="filter-options">
-                <form method="get" action="../Controllers/afficher_creneau.php">
-                    <input type="hidden" name="prestation_id" value="<?php echo htmlspecialchars($prestationId); ?>">
-                    <input type=hidden name=date value="<?php echo htmlspecialchars($selectedDate); ?>">
-                    <label>
-                        <input type="checkbox" name="cabinet" value="cabinet">
-                        Cabinet
-                    </label>
-                    <label>
-                        <input type="checkbox" name="visio" value="visio">
-                        Visio
-                    </label>
-                    <button type="submit">Filtrer</button>
-                </form>
+
+
+            <div class="bottom-section">
+                <div class="filter-options">
+                    <h3>Filtres</h3>
+                    <form method="get" action="../Controllers/afficher_creneau.php">
+                        <input type="hidden" name="prestation_id"
+                            value="<?php echo htmlspecialchars($prestationId); ?>">
+                        <input type="hidden" name="date" value="<?php echo htmlspecialchars($selectedDate); ?>">
+                        <label>
+                            <input type="checkbox" name="cabinet" value="cabinet">
+                            Cabinet
+                        </label>
+                        <label>
+                            <input type="checkbox" name="visio" value="visio">
+                            Visio
+                        </label>
+                        <button type="submit">Appliquer les filtres</button>
+                    </form>
+                </div>
+
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9999999999995!2d2.294481315674!3d48.858844979287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66efc7e9e6b0b%3A0x8c8e8e8e8e8e8e8e!2sEiffel%20Tower!5e0!3m2!1sen!2sfr!4v1610000000000!5m2!1sen!2sfr"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
             </div>
         </div>
-        <?php
 
-        echo "<h2>Créneaux de la semaine du " . $lundi . "</h2>";
-        for ($i = 0; $i < 7; $i++) {
-            $jour = date('Y-m-d', strtotime("$lundi +$i days"));
 
-            $day_id = getday_id($jour);
+        <div class="right-section">
+            <h2 class="creneaux-title">Créneaux de la semaine du <?php echo $lundi; ?></h2>
 
-            $cabinetChecked = isset($_GET['cabinet']) && $_GET['cabinet'];
-            $creneauxDuJour = GetCreneaux(prestation_id: $prestationId, day_id: $day_id);
-            $filteredCreneaux = [];
-            foreach ($creneauxDuJour as $c) {
-                if ($cabinetChecked && !$visioChecked && $c['cabinet']) {
-                    $filteredCreneaux[] = $c;
-                } elseif (!$cabinetChecked && $visioChecked && !$c['cabinet']) {
-                    $filteredCreneaux[] = $c;
-                } elseif (($cabinetChecked && $visioChecked) || (!$cabinetChecked && !$visioChecked)) {
-                    $filteredCreneaux[] = $c;
+            <?php
+            for ($i = 0; $i < 7; $i++) {
+                $jour = date('Y-m-d', strtotime("$lundi +$i days"));
+                $day_id = getday_id($jour);
+
+                $cabinetChecked = isset($_GET['cabinet']) && $_GET['cabinet'];
+                $visioChecked = isset($_GET['visio']) && $_GET['visio'];
+                $creneauxDuJour = getcreneaux($prestationId, $day_id);
+                $filteredCreneaux = [];
+
+                foreach ($creneauxDuJour as $c) {
+                    if ($cabinetChecked && !$visioChecked && $c['cabinet']) {
+                        $filteredCreneaux[] = $c;
+                    } elseif (!$cabinetChecked && $visioChecked && !$c['cabinet']) {
+                        $filteredCreneaux[] = $c;
+                    } elseif (($cabinetChecked && $visioChecked) || (!$cabinetChecked && !$visioChecked)) {
+                        $filteredCreneaux[] = $c;
+                    }
                 }
-            }
-            echo "<h3>" . date('d/m/Y', strtotime($jour)) . "</h3>";
-            if ($filteredCreneaux) {
-                echo "<ul>";
-                foreach ($filteredCreneaux as $creneau) {
-                    $reservedCreneaux = getreservedcreneaux($creneau['id']);
-                    foreach ($reservedCreneaux as $rc) {
-                        if ($rc['starthour'] == $creneau['starthour']) {
-                            echo "<strike><li class='reserved'>{$creneau['starthour']} - {$creneau['endhour']} </li></strike>(Réservé)";
-                            continue 2; // me permet de ne pas prendre en compte les créneaux déjà réservés, (saute les deux boucles)
+
+                echo "<h3 class='day-title'>" . date('d/m/Y', strtotime($jour)) . "</h3>";
+
+                if ($filteredCreneaux) {
+                    echo "<ul class='creneaux-list'>";
+                    foreach ($filteredCreneaux as $creneau) {
+                        $reservedCreneaux = getreservedcreneaux($creneau['id']);
+                        $reserved = false;
+
+                        foreach ($reservedCreneaux as $rc) {
+                            if ($rc['starthour'] == $creneau['starthour']) {
+                                echo "<li class='reserved'>{$creneau['starthour']} - {$creneau['endhour']} (Réservé)</li>";
+                                $reserved = true;
+                                break;
+                            }
+                        }
+
+                        if (!$reserved) {
+                            echo "<li><a href='afficher_formulaire.php?creneau_id={$creneau['id']}'>{$creneau['starthour']} - {$creneau['endhour']}</a></li>";
                         }
                     }
-                    echo "<a href='afficher_formulaire.php?creneau_id={$creneau['id']}'><li>{$creneau['starthour']} - {$creneau['endhour']}</li></a>";
+                    echo "</ul>";
+                } else {
+                    echo "<p class='no-creneaux'>Aucun créneau disponible</p>";
                 }
-                echo "</ul>";
-            } else {
-                echo "<p>Aucun créneau</p>";
             }
-        }
-        ?>
-
-    </section>
+            ?>
+        </div>
+    </div>
 </body>
 
 </html>

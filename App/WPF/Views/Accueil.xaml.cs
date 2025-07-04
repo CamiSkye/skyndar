@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-using WPF.ViewModels; // Assuming AcueilVM is defined in this namespace
+
 
 
 
@@ -21,7 +22,7 @@ namespace WPF.Views
     /// <summary>
     /// Logique d'interaction pour Accueil.xaml
     /// </summary>
-    public partial class Accueil : Window
+    public partial class Accueil : MetroWindow
     {
         public Accueil()
         {
