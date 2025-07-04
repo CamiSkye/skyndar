@@ -7,6 +7,7 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         mc:Ignorable="d"
+                      
         Title="Accueil" 
         Height="600" 
         Width="900"
@@ -29,7 +30,6 @@
                
             </ResourceDictionary.MergedDictionaries>
 
-           
             <SolidColorBrush x:Key="WindowBackground" Color="#FFF3F3F3"/>
             <SolidColorBrush x:Key="CardBackground" Color="#FFFFFFFF"/>
             <SolidColorBrush x:Key="AccentColor" Color="#FF0078D4"/>

@@ -3,8 +3,51 @@
   "WorkspaceRootPath": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\viewmodels\\disponibilitevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\viewmodels\\disponibilitevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\views\\accueil.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\accueil.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\wpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\wpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\viewmodels\\historiquevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\viewmodels\\historiquevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\viewmodels\\accueilvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\viewmodels\\accueilvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\views\\prestation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\prestation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\views\\historique.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\historique.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\views\\disponibilite.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\disponibilite.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\views\\accueil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\accueil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\services\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,31 +58,11 @@
       "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\models\\calendarday.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\viewmodels\\disponibilitevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\viewmodels\\disponibilitevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\views\\disponibilite.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\disponibilite.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\views\\accueil.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\accueil.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\peter\\AppData\\Local\\Temp\\.vsdbgsrc\\1781f93b04916c63a999d4d0d9e2a96e03297c9d891d69910e52ff7fa9dbe810\\Storyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\wpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\wpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\views\\accueil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\accueil.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\viewmodels\\prestationvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -62,22 +85,6 @@
       "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\historique.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\views\\historique.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\historique.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\views\\prestation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\views\\prestation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\viewmodels\\accueilvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\viewmodels\\accueilvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\viewmodels\\historiquevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\viewmodels\\historiquevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\models\\prestation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\models\\prestation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -88,10 +95,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|solutionrelative:wpf\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A6F963A5-6CC0-434F-BA4A-D7A12C606A2C}|WPF\\WPF.csproj|c:\\users\\peter\\onedrive - groupe esiea\\s3\\repo\\app\\wpf\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -108,7 +111,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 974,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -124,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\App.xaml",
               "RelativeDocumentMoniker": "WPF\\App.xaml",
@@ -136,30 +139,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 6,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\App.xaml.cs",
               "RelativeDocumentMoniker": "WPF\\App.xaml.cs",
               "ToolTip": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\App.xaml.cs",
               "RelativeToolTip": "WPF\\App.xaml.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAuwDAAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T14:07:08.295Z"
+              "WhenOpened": "2025-06-16T14:07:08.295Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Accueil.xaml",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Accueil.xaml",
               "RelativeDocumentMoniker": "WPF\\Views\\Accueil.xaml",
               "ToolTip": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Accueil.xaml",
               "RelativeToolTip": "WPF\\Views\\Accueil.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-16T14:08:17.039Z"
+              "WhenOpened": "2025-06-16T14:08:17.039Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 10,
               "Title": "Disponibilite.xaml",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Disponibilite.xaml",
               "RelativeDocumentMoniker": "WPF\\Views\\Disponibilite.xaml",
@@ -171,19 +176,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "DisponibiliteVM.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\ViewModels\\DisponibiliteVM.cs",
               "RelativeDocumentMoniker": "WPF\\ViewModels\\DisponibiliteVM.cs",
               "ToolTip": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\ViewModels\\DisponibiliteVM.cs",
               "RelativeToolTip": "WPF\\ViewModels\\DisponibiliteVM.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAAAFMBAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAHYBAAAAAAAAAAAqwIIBAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T14:15:47.191Z"
+              "WhenOpened": "2025-06-16T14:15:47.191Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 20,
               "Title": "Historique.xaml.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Historique.xaml.cs",
               "RelativeDocumentMoniker": "WPF\\Views\\Historique.xaml.cs",
@@ -195,18 +201,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 9,
               "Title": "Historique.xaml",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Historique.xaml",
               "RelativeDocumentMoniker": "WPF\\Views\\Historique.xaml",
               "ToolTip": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Historique.xaml",
               "RelativeToolTip": "WPF\\Views\\Historique.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-17T06:49:16.939Z"
+              "WhenOpened": "2025-06-17T06:49:16.939Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Accueil.xaml.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Accueil.xaml.cs",
               "RelativeDocumentMoniker": "WPF\\Views\\Accueil.xaml.cs",
@@ -214,11 +221,12 @@
               "RelativeToolTip": "WPF\\Views\\Accueil.xaml.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAtwBwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T08:22:55.723Z"
+              "WhenOpened": "2025-06-17T08:22:55.723Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 12,
               "Title": "DatabaseService.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Services\\DatabaseService.cs",
               "RelativeDocumentMoniker": "WPF\\Services\\DatabaseService.cs",
@@ -230,7 +238,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
               "Title": "CalendarDay.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Models\\CalendarDay.cs",
               "RelativeDocumentMoniker": "WPF\\Models\\CalendarDay.cs",
@@ -242,7 +250,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "MainVM.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\ViewModels\\MainVM.cs",
               "RelativeDocumentMoniker": "WPF\\ViewModels\\MainVM.cs",
@@ -254,7 +262,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "XamlReader.cs",
               "DocumentMoniker": "C:\\Users\\peter\\AppData\\Local\\Temp\\.vsdbgsrc\\1befe735ef2f30ebdfeaec5ccc78758d3e4ad401abef4ed87b738c98772ebb18\\XamlReader.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1befe735ef2f30ebdfeaec5ccc78758d3e4ad401abef4ed87b738c98772ebb18\\XamlReader.cs",
@@ -266,7 +274,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "WPF\\AssemblyInfo.cs",
@@ -278,7 +286,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\MainWindow.xaml",
               "RelativeDocumentMoniker": "WPF\\MainWindow.xaml",
@@ -289,7 +297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 5,
               "Title": "AccueilVM.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\ViewModels\\AccueilVM.cs",
               "RelativeDocumentMoniker": "WPF\\ViewModels\\AccueilVM.cs",
@@ -297,11 +305,12 @@
               "RelativeToolTip": "WPF\\ViewModels\\AccueilVM.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T08:06:01.57Z"
+              "WhenOpened": "2025-06-27T08:06:01.57Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "Creneau.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Models\\Creneau.cs",
               "RelativeDocumentMoniker": "WPF\\Models\\Creneau.cs",
@@ -313,18 +322,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 8,
               "Title": "Prestation.xaml",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Prestation.xaml",
               "RelativeDocumentMoniker": "WPF\\Views\\Prestation.xaml",
               "ToolTip": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Prestation.xaml",
               "RelativeToolTip": "WPF\\Views\\Prestation.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-27T09:41:44.13Z"
+              "WhenOpened": "2025-06-27T09:41:44.13Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "Prestation.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Models\\Prestation.cs",
               "RelativeDocumentMoniker": "WPF\\Models\\Prestation.cs",
@@ -336,19 +346,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 4,
               "Title": "HistoriqueVM.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\ViewModels\\HistoriqueVM.cs",
               "RelativeDocumentMoniker": "WPF\\ViewModels\\HistoriqueVM.cs",
               "ToolTip": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\ViewModels\\HistoriqueVM.cs",
               "RelativeToolTip": "WPF\\ViewModels\\HistoriqueVM.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-30T11:30:52.359Z"
+              "WhenOpened": "2025-06-30T11:30:52.359Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "PrestationVM.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\ViewModels\\PrestationVM.cs",
               "RelativeDocumentMoniker": "WPF\\ViewModels\\PrestationVM.cs",
@@ -360,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "RelayCommand.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\ViewModels\\RelayCommand.cs",
               "RelativeDocumentMoniker": "WPF\\ViewModels\\RelayCommand.cs",
@@ -372,19 +383,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "WPF.csproj",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\WPF.csproj",
               "RelativeDocumentMoniker": "WPF\\WPF.csproj",
               "ToolTip": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\WPF.csproj",
               "RelativeToolTip": "WPF\\WPF.csproj",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-30T11:38:42.745Z"
+              "WhenOpened": "2025-06-30T11:38:42.745Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
               "Title": "Disponibilite.xaml.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Disponibilite.xaml.cs",
               "RelativeDocumentMoniker": "WPF\\Views\\Disponibilite.xaml.cs",
@@ -396,7 +408,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "Prestation.xaml.cs",
               "DocumentMoniker": "C:\\Users\\peter\\OneDrive - Groupe ESIEA\\S3\\repo\\App\\WPF\\Views\\Prestation.xaml.cs",
               "RelativeDocumentMoniker": "WPF\\Views\\Prestation.xaml.cs",
@@ -408,7 +420,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 15,
               "Title": "Storyboard.cs",
               "DocumentMoniker": "C:\\Users\\peter\\AppData\\Local\\Temp\\.vsdbgsrc\\1781f93b04916c63a999d4d0d9e2a96e03297c9d891d69910e52ff7fa9dbe810\\Storyboard.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1781f93b04916c63a999d4d0d9e2a96e03297c9d891d69910e52ff7fa9dbe810\\Storyboard.cs",
@@ -418,6 +430,19 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-30T13:33:08.254Z",
               "EditorCaption": " [Lecture seule]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAADkWAAAAAAAAAAAIwEwWAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-07-04T06:48:28.648Z",
+              "EditorCaption": ""
             }
           ]
         }

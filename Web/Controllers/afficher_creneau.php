@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $currentyear = isset($_GET['year']) ? (int) $_GET['year'] : date('Y');
     $selectedDate = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 
-    $prestationId = $prestationId;
+
     $prevmonth = $currentmonth - 1;
     $prevyear = $currentyear;
     if ($prevmonth == 0) {

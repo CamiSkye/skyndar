@@ -49,7 +49,8 @@ create table rendezvous(
 );
 insert into user (username, password, email, IsAdmin) values
 ('Bertrand', 'admin', 'Bertrand@gmail.com', true);
+
 insert into prestation (titre, duree, description, tarif) values
 ('Rendez-vous ~ 1h', 60, 'Mentorat, coaching, sophrologie, hypnose, bilan de compétences, orientation scolaire et professionnelle... Libérez vos impossibles ! ', 0),
-('Rendez-vous ~ 2h', 120, 'Mentorat, coaching, sophrologie, hypnose, bilan de compétences, orientation scolaire et professionnelle... Libérez vos impossibles ! ', 0),
-('Rendez-vous ~ 1h30', 90, 'Mentorat, coaching, sophrologie, hypnose, bilan de compétences, orientation scolaire et professionnelle... Libérez vos impossibles ! ', 0)
+('Rendez-vous ~ 1h30', 90, 'Mentorat, coaching, sophrologie, hypnose, bilan de compétences, orientation scolaire et professionnelle... Libérez vos impossibles ! ', 0),
+('Rendez-vous ~ 2h', 120, 'Mentorat, coaching, sophrologie, hypnose, bilan de compétences, orientation scolaire et professionnelle... Libérez vos impossibles ! ', 0);

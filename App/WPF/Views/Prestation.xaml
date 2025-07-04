@@ -4,47 +4,75 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WPF.Views"
-             mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#5271ff">
+             mc:Ignorable="d" Height="587" Width="948">
+
+
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="RoundedButton">
+            <Setter Property="Background" Value="#5271ff"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#7ba6fe" Offset="0"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <StackPanel Margin="0,10,0,0">
-            <Grid Background="#77B5FE" Height="227" Width="770">
+            <Grid Background="Transparent" Height="Auto" Width="Auto">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="229*" />
+                    <ColumnDefinition Width="550*" />
+                    <ColumnDefinition Width="169*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" MinHeight="260.96"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Label Content="Libellé" Grid.Row="0" Grid.Column="0" Margin="10,28,10,68" Grid.RowSpan="2"/>
-                <TextBox x:Name="titre_pres" Grid.Row="0" Width="150" Margin="83,28,34,68" Grid.RowSpan="2" Text="{Binding Titre, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
+                <Label Content="Libellé :" Grid.Row="0" Grid.Column="0" Margin="20,10,481,148" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="titre_pres" Grid.Row="0" Margin="80,10,470,227" Text="{Binding Titre, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"/>
 
-                <Label Content="Durée" Grid.Column="1" Margin="10,30,10,68" Grid.RowSpan="3"/>
-                <TextBox x:Name="duree_pres" Grid.Column="1" Width="150" Margin="80,30,36,72" Grid.RowSpan="2" Text="{Binding Duree, UpdateSourceTrigger=PropertyChanged}"  Cursor="IBeam"/>
+                <Label Content="Durée :" Grid.Column="1" Margin="110,10,174,131" FontWeight="Bold"/>
+                <TextBox x:Name="duree_pres" Grid.Column="1" Margin="175,12,245,227" Text="{Binding Duree, UpdateSourceTrigger=PropertyChanged}" RenderTransformOrigin="0.5,0.5"/>
 
-                <Label Content="Tarif" Grid.Row="1" Grid.Column="0" Margin="10,28,10,-8" Grid.RowSpan="2"/>
-                <TextBox x:Name="tarif_pres" Width="150" Margin="83,30,34,24" Grid.RowSpan="1" Grid.Row="1" Text="{Binding Tarif, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
+                <Label Content="Tarif en euros :" Grid.Column="0" Margin="20,66,501,167" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="tarif_pres" Text="{Binding Tarif, UpdateSourceTrigger=PropertyChanged}" RenderTransformOrigin="0.501,0.675" Margin="120,66,21,167"/>
 
-                <Label Content="Description" Grid.Row="0" Grid.Column="2" Margin="10"/>
-                <TextBox x:Name="descip_pres" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Margin="10"
-                         Width="200" Height="120" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
+                <Label Content="Description :" Grid.Row="0" Grid.Column="1" Margin="330,10,71,10" FontWeight="Bold"/>
+                <TextBox x:Name="descip_pres" Grid.Column="1" Margin="419,12,84,130" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"/>
 
-                <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="147,23,0,-3">
-                    <Button Content="Ajouter" Width="100" Margin="10" Cursor="Hand" RenderTransformOrigin="0.5,0.5" Click="Ajouter_Click"/>
-                    <Button Content="Supprimer" Width="100" Margin="10" Cursor="Hand" Click="Supprimer_Click"/>
-                    <Button Content="Modifier" Width="100" Margin="10" Cursor="Hand" Click="Modifier_Click"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,158,0,60" Width="524" Grid.Column="1">
+                    <Button Content="Ajouter une prestation" Width="151" Margin="10" Background="#5271FF" Foreground="White" Cursor="Hand" Click="Ajouter_Click" Style="{StaticResource RoundedButton}" />
+                    <Button Content="Supprimer une prestation" Width="163" Margin="10" Background="#5271FF" Foreground="White" Cursor="Hand" Click="Supprimer_Click" Style="{StaticResource RoundedButton}"/>
+                    <Button Content="Modifier une prestation" Width="158" Margin="10" Background="#5271FF" Foreground="White" Cursor="Hand" Click="Modifier_Click" Style="{StaticResource RoundedButton}"/>
                 </StackPanel>
+
             </Grid>
-            <DataGrid x:Name="dataGridView1" Height="201" ItemsSource="{Binding Prestations}" SelectedItem="{Binding Select, Mode=TwoWay}" AutoGenerateColumns="False" Width="772">
+            <DataGrid x:Name="dataGridView1" Height="307" ItemsSource="{Binding Prestations}" SelectedItem="{Binding Select, Mode=TwoWay}" AutoGenerateColumns="False" Width="772">
                 <DataGrid.Columns>
-                <DataGridTextColumn Header="Titre" Binding="{Binding Titre}" />
-                <DataGridTextColumn Header="Tarif (€)" Binding="{Binding Tarif}" />
-                <DataGridTextColumn Header="Durée" Binding="{Binding Duree}" />
-                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                    <DataGridTextColumn Header="Titre" Binding="{Binding Titre}" />
+                    <DataGridTextColumn Header="Tarif (€)" Binding="{Binding Tarif}" />
+                    <DataGridTextColumn Header="Durée" Binding="{Binding Duree}" />
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

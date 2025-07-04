@@ -22,6 +22,7 @@
                 <?php echo htmlspecialchars(date('d/m/Y', strtotime($creneau['date']))); ?></p>
             <p><i class="far fa-clock"></i> <span class="highlight">Horaire :</span>
                 <?php echo htmlspecialchars($creneau['starthour'] . ' - ' . $creneau['endhour']); ?></p>
+
         </div>
 
         <div class="contact-info">

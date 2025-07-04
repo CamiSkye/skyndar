@@ -18,17 +18,41 @@ using WPF.Services;
 
 namespace WPF.ViewModels
 {
-    public class HistoriqueVM
+    public class HistoriqueVM : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
         public ObservableCollection<RendezVous> Historique { get; set; } = [];
 
         private readonly DatabaseService bdd = new();
+        private RendezVous _selectedRendezVous;
+        public RendezVous SelectedRendezVous
+        {
+            get => _selectedRendezVous;
+            set
+            {
+                _selectedRendezVous = value;
+                OnPropertyChanged();
+            }
+        }
 
         public HistoriqueVM()
         {
             Historique = bdd.GetRendezVous();
         }
 
+        public void SupprimerRendezVous()
+        {
+            if (SelectedRendezVous != null)
+            {
+                bdd.DeleteRendezVous(SelectedRendezVous.Id);
+                Historique.Remove(SelectedRendezVous);
+                SelectedRendezVous = null;
+            }
+        }
         public void Rafraichir()
         {
             Historique.Clear();
