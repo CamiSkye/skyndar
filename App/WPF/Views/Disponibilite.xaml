@@ -68,33 +68,58 @@
         </Grid.ColumnDefinitions>
 
         <!-- Calendrier -->
-        <Border Grid.Column="0" Margin="8" Background="{DynamicResource CardBackground}" CornerRadius="12" Padding="10" BorderBrush="{DynamicResource SystemControlBackgroundBaseLowBrush}" BorderThickness="1">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 10">
-                    <Button Content="⏪" Command="{Binding PreviousMonthCommand}" Style="{StaticResource RoundedAccentButton}" Width="32" Height="32" Margin="5"/>
-                    <TextBlock Text="{Binding CurrentMonth}" FontSize="16" FontWeight="Bold" Margin="10,0" VerticalAlignment="Center" Foreground="{DynamicResource TextPrimary}"/>
-                    <Button Content="⏩" Command="{Binding NextMonthCommand}" Style="{StaticResource RoundedAccentButton}" Width="32" Height="32" Margin="5"/>
-                </StackPanel>
+<!-- Partie CALENDRIER à gauche -->
+<Border Grid.Column="0" Margin="8" Background="White" CornerRadius="12" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1">
+    <StackPanel>
+        <!-- Header du mois avec flèches -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+            <Button Content="⏪"
+                    Command="{Binding PreviousMonthCommand}"
+                    Style="{StaticResource RoundedAccentButton}"
+                    Width="32" Height="32" Margin="5"/>
+            <TextBlock Text="{Binding CurrentMonth}"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="#2196F3"
+                       Margin="10,0"
+                       VerticalAlignment="Center"/>
+            <Button Content="⏩"
+                    Command="{Binding NextMonthCommand}"
+                    Style="{StaticResource RoundedAccentButton}"
+                    Width="32" Height="32" Margin="5"/>
+        </StackPanel>
 
-                <ItemsControl ItemsSource="{Binding Days}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="7"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Content="{Binding DayNumber}" Command="{Binding DataContext.SelectDayCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" IsEnabled="{Binding IsValid}" Margin="3" Style="{StaticResource RoundedAccentButton}" FontWeight="Bold" MinWidth="30" MinHeight="30"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+        <!-- Jours -->
+        <ItemsControl ItemsSource="{Binding Days}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="7"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding DayNumber}"
+                            Command="{Binding DataContext.SelectDayCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding}"
+                            IsEnabled="{Binding IsValid}"
+                            Margin="4"
+                            MinWidth="40" MinHeight="40"
+                            Style="{StaticResource RoundedAccentButton}"
+                            FontWeight="Bold"
+                            Background="#E3F2FD"
+                            Foreground="#0D47A1"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,20,10,0">
-                    <CheckBox Content="En Cabinet" IsChecked="{Binding IsCabinetChecked}" Margin="5"/>
-                    <CheckBox Content="Visio" IsChecked="{Binding IsVisioChecked}" Margin="5"/>
-                </StackPanel>
-            </StackPanel>
-        </Border>
+        <!-- Filtres cabinet / visio -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,20,10,0">
+            <CheckBox Content="En Cabinet" IsChecked="{Binding IsCabinetChecked}" Margin="5"/>
+            <CheckBox Content="Visio" IsChecked="{Binding IsVisioChecked}" Margin="5"/>
+        </StackPanel>
+    </StackPanel>
+</Border>
+
 
         <!-- Détails créneaux -->
         <Border Grid.Column="1" Margin="8" Background="{DynamicResource CardBackground}" CornerRadius="12" Padding="10" BorderBrush="{DynamicResource SystemControlBackgroundBaseLowBrush}" BorderThickness="1">
