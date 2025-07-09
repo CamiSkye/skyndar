@@ -23,8 +23,8 @@
 
             <div class="calendar-container">
                 <div class="navigation">
-                    <a href="?month=<?php echo $prevmonth; ?>&year=<?php echo $prevyear; ?>&id="
-                        <?php echo $prestationId; ?> class="prev-month"><i class="fas fa-chevron-left">&lt;</i></a>
+                    <a href="?month=<?php echo $prevmonth; ?>&year=<?php echo $prevyear; ?>&id=<?php echo $prestationId; ?>"
+                        class="prev-month"><i class="fas fa-chevron-left">&lt;</i></a>
                     <?php
                     setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
                     echo strftime('%B %Y', strtotime(sprintf('%04d-%02d-01', $currentyear, $currentmonth)));
@@ -41,7 +41,7 @@
                     </tr>
                     <tbody>
                         <?php
-                        $count = 0;
+                        $count = 0; 
                         for ($i = 0; $i < 6; $i++) {
                             echo "<tr>";
                             for ($j = 0; $j < 7; $j++) {
@@ -84,8 +84,11 @@
 
                 <div class="map-container">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9999999999995!2d2.294481315674!3d48.858844979287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66efc7e9e6b0b%3A0x8c8e8e8e8e8e8e8e!2sEiffel%20Tower!5e0!3m2!1sen!2sfr!4v1610000000000!5m2!1sen!2sfr"
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2631.2028391038374!2d2.1223143156741004!3d48.82694737928457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67dfb5b36b57f%3A0x4eb39785d0aad6f2!2sL&#39;Embelie!5e0!3m2!1sfr!2sfr!4v1720527370000!5m2!1sfr!2sfr"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+
                 </div>
             </div>
         </div>

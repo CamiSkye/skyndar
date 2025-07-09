@@ -8,9 +8,6 @@ use PHPMailer\PHPMailer\Exception;
 
 
 
-$prestataireEmail = 'testcodelily@gmail.com'; //Test pour voir si le prestataire reçoit le mail
-$prestataireNom = 'Lily';
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['nom'], $_GET['prenom'], $_GET['email'], $_GET['creneau_id'])) {
         $nom = htmlspecialchars($_GET['nom']);
@@ -27,37 +24,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             exit;
         }
 
+        // Récupère le créneau pour l'affichage
+        $creneau = getcreneaubyid($creneau_id);
+        if (!$creneau) {
+            echo "Créneau non trouvé.";
+            exit;
+        }
+
+
+        $heure_debut = $creneau['starthour'] ?? 'Heure inconnue';
+        $heure_fin = $creneau['endhour'] ?? 'Heure inconnue';
+        $lieu = "L'Embelie, 13 rue Pottier, Le Chesnay-Rocquencourt";
+
         try {
             $mailPro = new PHPMailer(true);
-            $mailPro->isMail();
+            $mailPro->isSMTP();
+            $mailPro->Host = 'smtp.gmail.com';
+            $mailPro->SMTPAuth = true;
+            $mailPro->Username = 'zoglopiere20@gmail.com';
+            $mailPro->Password = 'wqfn zcpx qiha cnyc';
+            $mailPro->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mailPro->Port = 587;
+
             $mailPro->setFrom('zoglopiere20@gmail.com', 'Skyndar');
-            $mailPro->addAddress($prestataireEmail, $prestataireNom);
+            $mailPro->addAddress($email, $nom);
+            $mailPro->addAddress('zoglopiere20@gmail.com', 'Skyndar');
+
             $mailPro->isHTML(true);
             $mailPro->Subject = 'Nouveau rendez-vous réservé';
-            $mailPro->Body = "Un nouveau RDV vient d’être réservé !\n\n"
-                . "Client : $prenom $nom\n"
-                . "Email : $email\n"
-                . "Heure : $heure\n"
-                . "Lieu : $lieu\n\n"
-                . "Merci de bien vouloir préparer ce créneau";
+            $mailPro->Body = "Un nouveau RDV vient d’être réservé !<br><br>"
+                . "<strong>Client :</strong> $prenom $nom<br>"
+                . "<strong>Email :</strong> $email<br>"
+                . "<strong>Heure :</strong> $heure_debut - $heure_fin <br>"
+                . "<strong>Lieu :</strong> $lieu<br><br>"
+                . "Merci de bien vouloir préparer ce créneau.";
 
             $mailPro->send();
-            echo 'Mail bien envoyé !';
+
         } catch (Exception $e) {
-            echo "Le mail n'a pas pu être envoyé. Mail Erreur: {$mailPro->ErrorInfo}";
+            echo "Le mail n'a pas pu être envoyé. Erreur : {$mailPro->ErrorInfo}";
         }
 
     } else {
         echo "Paramètres manquants.";
         exit;
     }
-
-    $creneau = getcreneaubyid($creneau_id);
-    if (!$creneau) {
-        echo "Creneau non trouvé.";
-        exit;
-    } else {
-        echo "Invalid request method.";
-    }
 }
+
 require '../Views/confirmation.php';

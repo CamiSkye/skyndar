@@ -4,6 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 
     $prestationId = isset($_GET['id']) ? (int) $_GET['id'] : 1;
+    echo "Prestation ID: $prestationId<br>";
     $cabinetChecked = isset($_GET['cabinet']) && $_GET['cabinet'];
 
     $visioChecked = isset($_GET['visio']) && $_GET['visio'];
@@ -16,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $prevmonth = $currentmonth - 1;
     $prevyear = $currentyear;
     if ($prevmonth == 0) {
+
         $prevmonth = 12;
         $prevyear--;
     }
