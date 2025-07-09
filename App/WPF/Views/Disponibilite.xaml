@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <SolidColorBrush x:Key="BlueAccentBrush" Color="#2196F3"/>
 
-        <Style x:Key="RoundedAccentButton" TargetType="Button" >
+        <Style x:Key="RoundedAccentButton" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource BlueAccentBrush}"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Template">
@@ -61,75 +61,67 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="{DynamicResource WindowBackground}" Margin="12">
+    <!-- 🔥 FOND GRADIENT BLEU -->
+    <Grid Margin="12">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#7ba6fe" Offset="0"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Calendrier -->
-<!-- Partie CALENDRIER à gauche -->
-<Border Grid.Column="0" Margin="8" Background="White" CornerRadius="12" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1">
-    <StackPanel>
-        <!-- Header du mois avec flèches -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-            <Button Content="⏪"
-                    Command="{Binding PreviousMonthCommand}"
-                    Style="{StaticResource RoundedAccentButton}"
-                    Width="32" Height="32" Margin="5"/>
-            <TextBlock Text="{Binding CurrentMonth}"
-                       FontSize="20"
-                       FontWeight="Bold"
-                       Foreground="#2196F3"
-                       Margin="10,0"
-                       VerticalAlignment="Center"/>
-            <Button Content="⏩"
-                    Command="{Binding NextMonthCommand}"
-                    Style="{StaticResource RoundedAccentButton}"
-                    Width="32" Height="32" Margin="5"/>
-        </StackPanel>
-
-        <!-- Jours -->
-        <ItemsControl ItemsSource="{Binding Days}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="7"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Content="{Binding DayNumber}"
-                            Command="{Binding DataContext.SelectDayCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                            CommandParameter="{Binding}"
-                            IsEnabled="{Binding IsValid}"
-                            Margin="4"
-                            MinWidth="40" MinHeight="40"
-                            Style="{StaticResource RoundedAccentButton}"
-                            FontWeight="Bold"
-                            Background="#E3F2FD"
-                            Foreground="#0D47A1"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <!-- Filtres cabinet / visio -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,20,10,0">
-            <CheckBox Content="En Cabinet" IsChecked="{Binding IsCabinetChecked}" Margin="5"/>
-            <CheckBox Content="Visio" IsChecked="{Binding IsVisioChecked}" Margin="5"/>
-        </StackPanel>
-    </StackPanel>
-</Border>
-
-
-        <!-- Détails créneaux -->
-        <Border Grid.Column="1" Margin="8" Background="{DynamicResource CardBackground}" CornerRadius="12" Padding="10" BorderBrush="{DynamicResource SystemControlBackgroundBaseLowBrush}" BorderThickness="1">
+        <!-- CALENDRIER -->
+        <Border Grid.Column="0" Margin="8" Background="White" CornerRadius="12" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1">
             <StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-                    <TextBlock Text="Prestations" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource TextPrimary}" Margin="5"/>
+                    <Button Content="⏪" Command="{Binding PreviousMonthCommand}" Style="{StaticResource RoundedAccentButton}" Width="32" Height="32" Margin="5"/>
+                    <TextBlock Text="{Binding CurrentMonth}" FontSize="20" FontWeight="Bold" Foreground="#2196F3" Margin="10,0" VerticalAlignment="Center"/>
+                    <Button Content="⏩" Command="{Binding NextMonthCommand}" Style="{StaticResource RoundedAccentButton}" Width="32" Height="32" Margin="5"/>
+                </StackPanel>
+
+                <ItemsControl ItemsSource="{Binding Days}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="7"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding DayNumber}"
+                                    Command="{Binding DataContext.SelectDayCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"
+                                    IsEnabled="{Binding IsValid}"
+                                    Margin="4"
+                                    MinWidth="40" MinHeight="40"
+                                    Style="{StaticResource RoundedAccentButton}"
+                                    FontWeight="Bold"
+                                    Background="#E3F2FD"
+                                    Foreground="#0D47A1"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,20,10,0">
+                    <CheckBox Content="En Cabinet" IsChecked="{Binding IsCabinetChecked}" Margin="5"/>
+                    <CheckBox Content="Visio" IsChecked="{Binding IsVisioChecked}" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- CRÉNEAUX -->
+        <Border Grid.Column="1" Margin="8" Background="White" CornerRadius="12" Padding="10" BorderBrush="#CCCCCC" BorderThickness="1">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <TextBlock Text="Prestations" FontSize="16" FontWeight="Bold" Foreground="#0D47A1" Margin="5"/>
                     <ComboBox ItemsSource="{Binding Prestations}" SelectedValue="{Binding SelectedPrestationId}" SelectedValuePath="Id" DisplayMemberPath="Titre" Width="200" Margin="5"/>
                 </StackPanel>
 
-                <TextBlock Text="Créneaux disponibles" FontSize="16" FontWeight="Bold" TextAlignment="Center" Margin="10" Foreground="{DynamicResource TextPrimary}"/>
+                <TextBlock Text="Créneaux disponibles" FontSize="16" FontWeight="Bold" TextAlignment="Center" Margin="10" Foreground="#0D47A1"/>
 
                 <ItemsControl ItemsSource="{Binding DaysInWeeks}">
                     <ItemsControl.ItemsPanel>
@@ -139,9 +131,9 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="{DynamicResource SystemControlBackgroundBaseLowBrush}" BorderThickness="1" Margin="5" CornerRadius="8" Background="{DynamicResource WindowBackground}" Padding="6">
+                            <Border BorderBrush="#CCCCCC" BorderThickness="1" Margin="5" CornerRadius="8" Background="White" Padding="6">
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Date, StringFormat={}{0:dddd dd MMMM}}" FontSize="12" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource TextSecondary}" Margin="0,0,0,5"/>
+                                    <TextBlock Text="{Binding Date, StringFormat={}{0:dddd dd MMMM}}" FontSize="12" FontWeight="Bold" TextAlignment="Center" Foreground="Gray" Margin="0,0,0,5"/>
 
                                     <ItemsControl ItemsSource="{Binding DayCreneaux}">
                                         <ItemsControl.ItemTemplate>

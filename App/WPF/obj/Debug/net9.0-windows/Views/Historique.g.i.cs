@@ -52,7 +52,7 @@ namespace WPF.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WPF;component/views/historique.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WPF;V1.0.0.0;component/views/historique.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\Historique.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
