@@ -61,16 +61,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $mailClient-> isHTML(true);
             $mailClient->Subject = 'Confirmation rendez-vous';
             $mailClient->Body = "Bonjour,<br><br>"
-                ."Merci pour votre réservation. Voici les détails de votre rendez-vous: <br>"
-                . "<strong>Date :</strong> $prenom $nom<br>"
+                . "Merci pour votre réservation. Voici les détails de votre rendez-vous: <br>"
+                . "<strong>Date :</strong> $date<br>"
                 . "<strong>Heure :</strong> $heure_debut - $heure_fin <br>"
                 . "<strong>Lieu :</strong> $lieu<br><br>"
-                . "<strong>Prestation :</strong> $email<br>"
+                . "<strong>Prestation :</strong> $prestation<br>"
                 . "Je vous remercie pour votre confiance. <br><br>"
-                ."📩 Pour toute modification ou annulation, merci de me contacter par e-mail à : contact@e-ki-libre.net <br>"
-                ."📄 Consultez la politique d’annulation/modification ici : https://e-ki-libre.net/tarifs/ <br>"
-                ."À très bientôt, <br>"
-                ."Bertrand MANGIN";
+                . "📩 Pour toute modification ou annulation, merci de me contacter par e-mail à : contact@e-ki-libre.net <br>"
+                . "📄 Consultez la politique d’annulation/modification ici : https://e-ki-libre.net/tarifs/ <br>"
+                . "À très bientôt, <br>"
+                . "Bertrand MANGIN";
             $mailClient -> send();
     } catch (Exception $e) {
         echo "Le mail n'a pas pu être envoyé. Mail Erreur: {$mailClient->ErrorInfo}";
@@ -98,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $mailPro->Body = "Un nouveau RDV vient d’être réservé !<br><br>"
                 . "<strong>Client :</strong> $prenom $nom<br>"
                 . "<strong>Email :</strong> $email<br>"
+                . "<strong>Date :</strong> $date<br>"
                 . "<strong>Heure :</strong> $heure_debut - $heure_fin <br>"
                 . "<strong>Lieu :</strong> $lieu<br><br>"
                 . "Merci de bien vouloir préparer ce créneau.";
