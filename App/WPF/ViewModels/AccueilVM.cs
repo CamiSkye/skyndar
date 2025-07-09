@@ -8,5 +8,6 @@ namespace WPF.ViewModels
 {
     public class AccueilVM
     {
+
     }
 }

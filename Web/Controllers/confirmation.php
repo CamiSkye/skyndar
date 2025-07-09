@@ -7,6 +7,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
+$prestataireEmail = 'testcodelily@gmail.com'; //Test pour voir si le prestataire reçoit le mail
+$prestataireNom = 'Lily';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['nom'], $_GET['prenom'], $_GET['email'], $_GET['creneau_id'])) {
@@ -26,6 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
         // Récupère le créneau pour l'affichage
         $creneau = getcreneaubyid($creneau_id);
+        $date = $creneau['date'];
+        $prestation = $creneau['titre'];
         if (!$creneau) {
             echo "Créneau non trouvé.";
             exit;
@@ -37,33 +42,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $lieu = "L'Embelie, 13 rue Pottier, Le Chesnay-Rocquencourt";
 
         try {
-            $mailPro = new PHPMailer(true);
-            $mailPro->isSMTP();
-            $mailPro->Host = 'smtp.gmail.com';
-            $mailPro->SMTPAuth = true;
-            $mailPro->Username = 'zoglopiere20@gmail.com';
-            $mailPro->Password = 'wqfn zcpx qiha cnyc';
-            $mailPro->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mailPro->Port = 587;
+            $mailClient = new PHPMailer(true);
+            $mailClient->CharSet = 'UTF-8';
+            $mailClient->Encoding = 'base64';
+            $mailClient->SMTPDebug = 0;
+            $mailClient->isSMTP();
+            $mailClient->Host = 'smtp.gmail.com';
+            $mailClient->SMTPAuth = true;
+            $mailClient->Username = 'zoglopiere20@gmail.com';
+            $mailClient->Password = 'wqfn zcpx qiha cnyc';
+            $mailClient->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mailClient->Port = 587;
 
-            $mailPro->setFrom('zoglopiere20@gmail.com', 'Skyndar');
-            $mailPro->addAddress($email, $nom);
-            $mailPro->addAddress('zoglopiere20@gmail.com', 'Skyndar');
 
-            $mailPro->isHTML(true);
-            $mailPro->Subject = 'Nouveau rendez-vous réservé';
-            $mailPro->Body = "Un nouveau RDV vient d’être réservé !<br><br>"
-                . "<strong>Client :</strong> $prenom $nom<br>"
-                . "<strong>Email :</strong> $email<br>"
+            $mailClient->setFrom('zoglopiere20@gmail.com', 'Skyndar');
+            $mailClient->addAddress($email, "$prenom $nom");
+            //Après le test mettre ($email, "$prenom $nom")
+            $mailClient->addAddress('zoglopiere20@gmail.com', 'Skyndar'); // Pour envoyer une copie au prestataire
+            $mailClient->isHTML(true);
+            $mailClient->Subject = 'Confirmation rendez-vous';
+            $mailClient->Body = "Bonjour,<br><br>"
+                . "Merci pour votre réservation. Voici les détails de votre rendez-vous: <br>"
+                . "<strong>Date :</strong> $date<br>"
                 . "<strong>Heure :</strong> $heure_debut - $heure_fin <br>"
                 . "<strong>Lieu :</strong> $lieu<br><br>"
-                . "Merci de bien vouloir préparer ce créneau.";
+                . "<strong>Prestation :</strong> $prestation<br>"
+                . "Je vous remercie pour votre confiance. <br><br>"
+                . "📩 Pour toute modification ou annulation, merci de me contacter par e-mail à : <a href='mailto:contact@e-ki-libre.net'>contact@e-ki-libre.net</a><br>"
+                . "📄 Consultez la politique d’annulation/modification ici : <a href='https://e-ki-libre.net/tarifs/'>https://e-ki-libre.net/tarifs/</a><br>"
 
-            $mailPro->send();
-
+                . "À très bientôt, <br>"
+                . "Bertrand MANGIN";
+            $mailClient->send();
         } catch (Exception $e) {
-            echo "Le mail n'a pas pu être envoyé. Erreur : {$mailPro->ErrorInfo}";
+            echo "Le mail n'a pas pu être envoyé. Mail Erreur: {$mailClient->ErrorInfo}";
         }
+
+
 
     } else {
         echo "Paramètres manquants.";
