@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $mailClient->setFrom('zoglopiere20@gmail.com', 'Testeur');
             $mailClient->addAddress('peterzoglo@gmail.com'); //Après le test mettre ($email, "$prenom $nom")
             $mailClient-> isHTML(true);
-            $mailClient->Subject = 'Confirmation rendez-vous';
+            $mailClient->Subject = 'Confirmation de rendez-vous';
             $mailClient->Body = "Bonjour,<br><br>"
                 . "Merci pour votre réservation. Voici les détails de votre rendez-vous: <br>"
                 . "<strong>Date :</strong> $date<br>"
