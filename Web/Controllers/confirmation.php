@@ -6,6 +6,12 @@ require '../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+$prestataireEmail = 'testcodelily@gmail.com'; //Test pour voir si le prestataire reçoit le mail
+$prestataireNom = 'Lily';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -37,7 +43,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $lieu = "L'Embelie, 13 rue Pottier, Le Chesnay-Rocquencourt";
 
         try {
+            $mailClient = new PHPMailer(true);
+            $mailClient->CharSet = 'UTF-8';
+            $mailClient->Encoding = 'base64';
+            $mailClient->SMTPDebug = 0;
+            $mailClient->isSMTP();
+            $mailClient->Host = 'smtp.gmail.com'; 
+            $mailClient->SMTPAuth = true;
+            $mailClient->Username = 'zoglopiere20@gmail.com';
+            $mailClient->Password = 'wqfn zcpx qiha cnyc';
+            $mailClient->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mailClient->Port = 587;
+
+            $mailClient->isMail(); 
+            $mailClient->setFrom('zoglopiere20@gmail.com', 'Testeur');
+            $mailClient->addAddress('peterzoglo@gmail.com'); //Après le test mettre ($email, "$prenom $nom")
+            $mailClient-> isHTML(true);
+            $mailClient->Subject = 'Confirmation rendez-vous';
+            $mailClient->Body = "Bonjour,<br><br>"
+                ."Merci pour votre réservation. Voici les détails de votre rendez-vous: <br>"
+                . "<strong>Date :</strong> $prenom $nom<br>"
+                . "<strong>Heure :</strong> $heure_debut - $heure_fin <br>"
+                . "<strong>Lieu :</strong> $lieu<br><br>"
+                . "<strong>Prestation :</strong> $email<br>"
+                . "Je vous remercie pour votre confiance. <br><br>"
+                ."📩 Pour toute modification ou annulation, merci de me contacter par e-mail à : contact@e-ki-libre.net <br>"
+                ."📄 Consultez la politique d’annulation/modification ici : https://e-ki-libre.net/tarifs/ <br>"
+                ."À très bientôt, <br>"
+                ."Bertrand MANGIN";
+            $mailClient -> send();
+    } catch (Exception $e) {
+        echo "Le mail n'a pas pu être envoyé. Mail Erreur: {$mailClient->ErrorInfo}";
+    }
+
+
+        try {
             $mailPro = new PHPMailer(true);
+            $mailPro->CharSet = 'UTF-8';
+            $mailPro->Encoding = 'base64';
+            $mailPro->SMTPDebug = 0;
             $mailPro->isSMTP();
             $mailPro->Host = 'smtp.gmail.com';
             $mailPro->SMTPAuth = true;
@@ -47,8 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $mailPro->Port = 587;
 
             $mailPro->setFrom('zoglopiere20@gmail.com', 'Skyndar');
-            $mailPro->addAddress($email, $nom);
-            $mailPro->addAddress('zoglopiere20@gmail.com', 'Skyndar');
+            $mailPro->addAddress($prestataireEmail, $prestataireNom);
 
             $mailPro->isHTML(true);
             $mailPro->Subject = 'Nouveau rendez-vous réservé';

@@ -21,3 +21,4 @@ function insertrendezvous($user_id, $creneau_id) {
     
     return $query->execute();
 }
+

@@ -53,15 +53,4 @@ foreach ($rdvs as $rdv) {
 require '../Models/CreneauData.php';
 require '../Models/MailService.php';
 
-/*$rdvs = getRendezVousDans24h();
-
-foreach ($rdvs as $rdv) {
-    $date = date('d/m/Y', strtotime($rdv['rendezvous_datetime']));
-    $heure = date('H:i', strtotime($rdv['rendezvous_datetime']));
-    $success = envoyerMailRappel($rdv['email'], $rdv['username'], $date, $heure, $rdv['titre']);
-
-    if ($success) {
-        marquerCommeRappele($rdv['id']);
-    }
-}
-    */
+    
