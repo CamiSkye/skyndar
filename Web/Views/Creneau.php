@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="../Styles/creneau.css">
     <title>Calendrier de rendez-vous</title>
     <script>
-        setInterval(() => 
-        {
-            location.reload(); 
-        }, 5000); 
+        setInterval(() => {
+            location.reload();
+        }, 5000);
     </script>
 
 </head>
@@ -29,14 +28,14 @@
 
             <div class="calendar-container">
                 <div class="navigation">
-                    <a href="?month=<?php echo $prevmonth; ?>&year=<?php echo $prevyear; ?>&id=<?php echo $prestationId; ?>"
+                    <a href="afficher_creneau.php?month=<?php echo $prevmonth; ?>&year=<?php echo $prevyear; ?>&id=<?php echo $prestationId; ?>"
                         class="prev-month"><i class="fas fa-chevron-left">&lt;</i></a>
                     <?php
                     setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
                     echo strftime('%B %Y', strtotime(sprintf('%04d-%02d-01', $currentyear, $currentmonth)));
                     ?>
-                    <a href="?month=<?php echo $nextmonth; ?>&year=<?php echo $nextyear; ?>&id="
-                        <?php echo $prestationId; ?> class="next-month"><i class="fas fa-chevron-right">&gt;</i></a>
+                    <a href="afficher_creneau.php?month=<?php echo $nextmonth; ?>&year=<?php echo $nextyear; ?>&id=<?php echo $prestationId; ?>"
+                        class="next-month"><i class="fas fa-chevron-right">&gt;</i></a>
                 </div>
 
                 <table border="1" cellpadding="8" cellspacing="0">
@@ -47,7 +46,7 @@
                     </tr>
                     <tbody>
                         <?php
-                        $count = 0; 
+                        $count = 0;
                         for ($i = 0; $i < 6; $i++) {
                             echo "<tr>";
                             for ($j = 0; $j < 7; $j++) {
@@ -55,7 +54,7 @@
                                 if ($cell && isset($cell['date'])) {
                                     $date = $cell['date'];
                                     $dayNumber = date('d', strtotime($date));
-                                    echo "<td><a href='?date=$date&month=$currentmonth&year=$currentyear'>$dayNumber</a></td>";
+                                    echo "<td><a href='?date=$date&month=$currentmonth&year=$currentyear&id=$prestationId'>$dayNumber</a></td>";
                                 } else {
                                     echo "<td></td>";
                                 }
@@ -73,8 +72,7 @@
                 <div class="filter-options">
                     <h3>Filtres</h3>
                     <form method="get" action="../Controllers/afficher_creneau.php">
-                        <input type="hidden" name="prestation_id"
-                            value="<?php echo htmlspecialchars($prestationId); ?>">
+                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($prestationId); ?>">
                         <input type="hidden" name="date" value="<?php echo htmlspecialchars($selectedDate); ?>">
                         <label>
                             <input type="checkbox" name="cabinet" value="cabinet">

@@ -20,12 +20,6 @@ foreach ($rdvs as $rdv) {
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'zoglopiere20@gmail.com';
-        $mail->Password = 'Zog@2005@01.!?';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
 
         $mail->setFrom('zoglopiere20@gmail.com', 'Skyndar');
         $mail->addAddress($rdv['email'], $rdv['username']);
