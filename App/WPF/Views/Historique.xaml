@@ -46,7 +46,7 @@
                     <DataGridTextColumn Header="Heure de Fin " Binding="{Binding Creneau.HeureFin}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Supprimer un rendez-vous" Width="158" Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="617,0,0,10" Click="Supprimer_Click" Cursor="Hand" Style="{StaticResource RoundedButton}"/>
+            <Button Content="Supprimer un rendez-vous" Width="181" Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="594,0,0,10" Click="Supprimer_Click" Cursor="Hand" Style="{StaticResource RoundedButton}"/>
         </Grid>
     </Grid>
 </UserControl>

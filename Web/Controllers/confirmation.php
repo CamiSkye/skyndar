@@ -5,8 +5,12 @@ require '../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
 
 
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../')//ici le fichier .env est placé à la racine du projet en dehors des dossiers App et Web;
+
+$dotenv->load();
 
 $prestataireEmail = 'testcodelily@gmail.com'; //Test pour voir si le prestataire reçoit le mail
 $prestataireNom = 'Lily';
@@ -47,13 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $mailClient->Encoding = 'base64';
             $mailClient->SMTPDebug = 0;
             $mailClient->isSMTP();
-            $mailClient->Host = 'smtp.gmail.com';
+            $mailClient->Host = $_ENV['SMTP_HOST'];
             $mailClient->SMTPAuth = true;
-            $mailClient->Username = 'zoglopiere20@gmail.com';
-            $mailClient->Password = 'wqfn zcpx qiha cnyc';
+            $mailClient->Username = $_ENV['SMTP_USERNAME'];
+            $mailClient->Password = $_ENV['SMTP_PASSWORD'];
             $mailClient->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mailClient->Port = 587;
-            $mailClient->setFrom('zoglopiere20@gmail.com', 'Skyndar');
+            $mailClient->Port = $_ENV['SMTP_PORT'];
+            $mailClient->setFrom($_ENV['SMTP_FROM'], $_ENV['SMTP_NAME'])
             $mailClient->addAddress($clientemail, $prenom);
             $mailClient->isHTML(true);
             $mailClient->Subject = 'Confirmation de rendez-vous';
